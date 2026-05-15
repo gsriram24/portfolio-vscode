@@ -22,10 +22,19 @@ const STORAGE_KEY = "gsriram-theme";
 
 export function setTheme(id: ThemeId): void {
   document.documentElement.setAttribute("data-theme", id);
-  localStorage.setItem(STORAGE_KEY, id);
+  try {
+    localStorage.setItem(STORAGE_KEY, id);
+  } catch {}
 }
 
 export function getTheme(): ThemeId {
   if (typeof window === "undefined") return "dark-plus";
-  return (localStorage.getItem(STORAGE_KEY) as ThemeId) ?? "dark-plus";
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return (THEME_IDS as readonly string[]).includes(stored ?? "")
+      ? (stored as ThemeId)
+      : "dark-plus";
+  } catch {
+    return "dark-plus";
+  }
 }
