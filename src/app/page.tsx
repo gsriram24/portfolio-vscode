@@ -1,7 +1,7 @@
 export default function HomePage() {
   return (
-    <main className="flex items-center justify-center h-screen font-code text-meta text-dim">
-      gsriram.dev — Phase 2 scaffold complete
-    </main>
+    <div className="p-6 font-code text-code text-dim">
+      Sriram.tsx — Phase 3 chrome shell complete
+    </div>
   );
 }

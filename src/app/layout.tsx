@@ -1,5 +1,7 @@
+import { type ReactNode } from "react";
 import type { Metadata } from "next";
 import { ibmPlexSans, cascadiaCode, newsreader } from "@/lib/fonts";
+import { ChromeShell } from "@/components/chrome/ChromeShell";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -10,7 +12,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <html
@@ -21,11 +23,13 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             // Storage key must match STORAGE_KEY in src/lib/theme.ts
-          __html: `(function(){try{var t=localStorage.getItem('gsriram-theme')||'dark-plus';document.documentElement.setAttribute('data-theme',t);}catch(e){}})()`,
+            __html: `(function(){try{var t=localStorage.getItem('gsriram-theme')||'dark-plus';document.documentElement.setAttribute('data-theme',t);}catch(e){}})()`,
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <ChromeShell>{children}</ChromeShell>
+      </body>
     </html>
   );
 }
