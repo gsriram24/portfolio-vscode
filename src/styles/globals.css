@@ -65,7 +65,7 @@
   /* ── Derived surface ── */
   --color-side-hi:   color-mix(in srgb, var(--color-side) 83%, var(--color-fg-hi));
   --color-muted:     color-mix(in srgb, var(--color-side) 80%, var(--color-fg));
-  --color-activity:  color-mix(in srgb, var(--color-side) 70%, var(--color-bg-elev));
+  --color-activity:  color-mix(in srgb, var(--color-side) 85%, var(--color-bg));
   --color-title-bar: color-mix(in srgb, var(--color-bg-elev) 60%, var(--color-fg) 40%);
 
   /* ── Derived syntax ── */
@@ -206,9 +206,17 @@ code,
 pre,
 kbd {
   font-family: var(--font-code);
-  font-size: 13px;
+  font-size: var(--font-size-code);
 }
 
 ::selection {
   background: var(--color-selection);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-med:  0ms;
+    --duration-slow: 0ms;
+  }
 }
