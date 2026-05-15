@@ -17,7 +17,7 @@ export function StatusBar() {
 
   return (
     <div
-      className="h-6 flex items-center justify-between px-2 shrink-0 font-code text-[11.5px] text-white gap-2"
+      className="h-6 flex items-center justify-between px-2 shrink-0 font-code text-meta text-white gap-2"
       style={{ background: "#007ACC" }}
     >
       <div className="flex items-center gap-3">

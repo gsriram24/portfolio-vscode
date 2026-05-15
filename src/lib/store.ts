@@ -26,13 +26,16 @@ export const useChromeStore = create<ChromeStore>((set, get) => ({
   openTab: (id) =>
     set((s) => ({ tabs: s.tabs.includes(id) ? s.tabs : [...s.tabs, id] })),
   closeTab: (id) =>
-    set((s) => ({
-      tabs: s.tabs.filter((t) => t !== id),
-      activeTab:
-        s.activeTab === id
-          ? (s.tabs.find((t) => t !== id) ?? s.tabs[0])
-          : s.activeTab,
-    })),
+    set((s) => {
+      const nextTabs = s.tabs.filter((t) => t !== id);
+      return {
+        tabs: nextTabs,
+        activeTab:
+          s.activeTab === id
+            ? (nextTabs.find((t) => t !== id) ?? nextTabs[0] ?? "")
+            : s.activeTab,
+      };
+    }),
   setViewMode: (id, mode) =>
     set((s) => ({ viewModes: { ...s.viewModes, [id]: mode } })),
   getViewMode: (id) => get().viewModes[id] ?? "preview",

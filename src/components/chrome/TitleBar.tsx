@@ -20,7 +20,7 @@ export function TitleBar() {
       </div>
 
       {/* Center title */}
-      <div className="flex-1 text-center font-code text-[11.5px] text-[#CCCCCC] overflow-hidden text-ellipsis whitespace-nowrap">
+      <div className="flex-1 text-center font-code text-meta text-fg overflow-hidden text-ellipsis whitespace-nowrap">
         {fileName} — gsriram.dev
       </div>
 

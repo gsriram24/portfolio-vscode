@@ -12,7 +12,7 @@ export function HintBar() {
 
   return (
     <div className="h-12 bg-bg-elev border-b border-border flex items-center justify-between px-3 shrink-0 gap-2">
-      <span className="flex items-center gap-1.5 font-code text-[12.5px] text-fg overflow-hidden">
+      <span className="flex items-center gap-1.5 font-code text-code text-fg overflow-hidden">
         <span style={{ color: dotColor, fontSize: 9, flexShrink: 0 }}>●</span>
         <span className="overflow-hidden text-ellipsis whitespace-nowrap">{fileName}</span>
       </span>

@@ -14,21 +14,22 @@ function TabItem({ id, active }: { id: string; active: boolean }) {
 
   return (
     <div
-      role="button"
-      tabIndex={0}
-      onClick={() => setActiveTab(id)}
-      onKeyDown={(e) => e.key === "Enter" && setActiveTab(id)}
-      className={`flex items-center gap-1.5 px-3 h-full font-code text-[12.5px] border-r border-border cursor-pointer shrink-0 whitespace-nowrap select-none border-t ${
+      className={`flex items-center h-full font-code text-code border-r border-border shrink-0 whitespace-nowrap select-none border-t ${
         active
           ? "bg-bg text-fg-hi border-t-accent"
           : "bg-transparent text-dim border-t-transparent"
       }`}
     >
-      <span style={{ color: dotColor, fontSize: 9 }}>●</span>
-      {fileName}
       <button
-        onClick={(e) => { e.stopPropagation(); closeTab(id); }}
-        className="flex items-center justify-center text-muted bg-transparent cursor-pointer p-0"
+        onClick={() => setActiveTab(id)}
+        className="flex items-center gap-1.5 pl-3 pr-1 h-full cursor-pointer bg-transparent text-inherit"
+      >
+        <span style={{ color: dotColor, fontSize: 9 }}>●</span>
+        {fileName}
+      </button>
+      <button
+        onClick={() => closeTab(id)}
+        className="flex items-center justify-center pr-3 h-full cursor-pointer bg-transparent text-muted"
         title={`Close ${fileName}`}
       >
         <X size={13} />

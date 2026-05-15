@@ -24,7 +24,7 @@ function ActivityIcon({ id, Icon, label }: { id: PanelId; Icon: LucideIcon; labe
       title={label}
       onClick={() => setActivePanel(active ? null : id)}
       className={`w-9 h-9 flex items-center justify-center cursor-pointer shrink-0 bg-transparent border-l-2 ${
-        active ? "text-fg-hi border-fg-hi" : "text-[#5C5C5C] border-transparent"
+        active ? "text-fg-hi border-fg-hi" : "text-dim border-transparent"
       }`}
     >
       <Icon size={17} />
