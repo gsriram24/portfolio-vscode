@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+/* ════════════════════════════════════════════════════════════════
+   TIER 1 — Primitive tokens (Dark+ as default)
+   These are the only values that differ between themes.
+   ════════════════════════════════════════════════════════════════ */
+@theme {
+  /* ── Surface ── */
+  --color-bg:       #1E1E1E;
+  --color-bg-elev:  #252526;
+  --color-side:     #252526;
+  --color-border:   #2D2D30;
+  --color-fg:       #D4D4D4;
+  --color-fg-hi:    #FFFFFF;
+  --color-dim:      #858585;
+
+  /* ── Accent (per-theme — see override blocks below) ── */
+  --color-accent:   #007ACC;
+
+  /* ── Signal — constant across ALL themes, NEVER in override blocks ── */
+  --color-shipping: #6A9955;
+  --color-drift:    #CE9178;
+  --color-error:    #F48771;
+
+  /* ── Syntax ── */
+  --color-keyword:  #569CD6;
+  --color-string:   #CE9178;
+  --color-number:   #B5CEA8;
+  --color-func:     #DCDCAA;
+  --color-type:     #4EC9B0;
+  --color-variable: #9CDCFE;
+  --color-comment:  #6A9955;
+  --color-attr:     #9CDCFE;
+
+  /* ── Motion — used as: transition: background var(--duration-fast) var(--ease-vscode) ── */
+  --ease-vscode:    cubic-bezier(0.2, 0.7, 0.1, 1);
+  --duration-fast:  120ms;
+  --duration-med:   200ms;
+  --duration-slow:  320ms;
+
+  /* ── Type scale — generates text-display, text-h1 … text-meta utilities ── */
+  --font-size-display: 64px;
+  --font-size-h1:      48px;
+  --font-size-h2:      32px;
+  --font-size-h3:      24px;
+  --font-size-lead:    18px;
+  --font-size-body:    16px;
+  --font-size-code:    13px;
+  --font-size-meta:    11px;
+
+  /* ── Fonts (next/font injects these CSS vars onto <html>) ── */
+  --font-ui:    var(--font-ibm-plex-sans), sans-serif;
+  --font-code:  var(--font-cascadia-code), monospace;
+  --font-prose: var(--font-newsreader), serif;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TIER 2 — Derived tokens
+   Computed from Tier 1 via color-mix(). Defined ONCE here.
+   Auto-update when any Tier 1 token changes.
+   Never override per-theme — Tier 2 follows Tier 1 automatically.
+   Adding a new derived token = one line here, works across all 6 themes.
+   ════════════════════════════════════════════════════════════════ */
+:root {
+  /* ── Derived surface ── */
+  --color-side-hi:   color-mix(in srgb, var(--color-side) 83%, var(--color-fg-hi));
+  --color-muted:     color-mix(in srgb, var(--color-side) 80%, var(--color-fg));
+  --color-activity:  color-mix(in srgb, var(--color-side) 70%, var(--color-bg-elev));
+  --color-title-bar: color-mix(in srgb, var(--color-bg-elev) 60%, var(--color-fg) 40%);
+
+  /* ── Derived syntax ── */
+  --color-control:   color-mix(in srgb, var(--color-keyword) 40%, var(--color-variable));
+  --color-punct:     var(--color-fg);
+  --color-jsdoc:     color-mix(in srgb, var(--color-comment) 80%, var(--color-dim));
+
+  /* ── Derived interactive ── */
+  --color-selection: color-mix(in srgb, var(--color-accent) 30%, transparent);
+  --color-git-blame: color-mix(in srgb, var(--color-bg) 40%, var(--color-dim));
+}
+
+/* ════════════════════════════════════════════════════════════════
+   THEME OVERRIDES — Tier 1 primitives only
+   Tier 2 derived tokens update automatically from these.
+   ════════════════════════════════════════════════════════════════ */
+
+[data-theme="dark-modern"] {
+  --color-bg:       #1F1F1F;
+  --color-bg-elev:  #181818;
+  --color-side:     #181818;
+  --color-border:   #2B2B2B;
+  --color-fg:       #CCCCCC;
+  --color-fg-hi:    #FFFFFF;
+  --color-dim:      #9D9D9D;
+  --color-accent:   #0078D4;
+  --color-keyword:  #569CD6;
+  --color-string:   #CE9178;
+  --color-number:   #B5CEA8;
+  --color-func:     #DCDCAA;
+  --color-type:     #4EC9B0;
+  --color-variable: #9CDCFE;
+  --color-comment:  #6A9955;
+  --color-attr:     #9CDCFE;
+}
+
+[data-theme="monokai"] {
+  --color-bg:       #272822;
+  --color-bg-elev:  #1E1F1C;
+  --color-side:     #1E1F1C;
+  --color-border:   #3E3D32;
+  --color-fg:       #F8F8F2;
+  --color-fg-hi:    #FFFFFF;
+  --color-dim:      #75715E;
+  --color-accent:   #FD971F;
+  --color-keyword:  #F92672;
+  --color-string:   #E6DB74;
+  --color-number:   #AE81FF;
+  --color-func:     #A6E22E;
+  --color-type:     #66D9EF;
+  --color-variable: #FD971F;
+  --color-comment:  #75715E;
+  --color-attr:     #A6E22E;
+}
+
+[data-theme="solarized-dark"] {
+  --color-bg:       #002B36;
+  --color-bg-elev:  #073642;
+  --color-side:     #073642;
+  --color-border:   #094350;
+  --color-fg:       #839496;
+  --color-fg-hi:    #FDF6E3;
+  --color-dim:      #586E75;
+  --color-accent:   #268BD2;
+  --color-keyword:  #859900;
+  --color-string:   #2AA198;
+  --color-number:   #D33682;
+  --color-func:     #268BD2;
+  --color-type:     #B58900;
+  --color-variable: #CB4B16;
+  --color-comment:  #586E75;
+  --color-attr:     #268BD2;
+}
+
+[data-theme="light-plus"] {
+  --color-bg:       #FFFFFF;
+  --color-bg-elev:  #F3F3F3;
+  --color-side:     #F3F3F3;
+  --color-border:   #E5E5E5;
+  --color-fg:       #000000;
+  --color-fg-hi:    #000000;
+  --color-dim:      #616161;
+  --color-accent:   #0066B8;
+  --color-keyword:  #0000FF;
+  --color-string:   #A31515;
+  --color-number:   #098658;
+  --color-func:     #795E26;
+  --color-type:     #267F99;
+  --color-variable: #001080;
+  --color-comment:  #008000;
+  --color-attr:     #001080;
+}
+
+[data-theme="solarized-light"] {
+  --color-bg:       #FDF6E3;
+  --color-bg-elev:  #EEE8D5;
+  --color-side:     #EEE8D5;
+  --color-border:   #D8D1B7;
+  --color-fg:       #657B83;
+  --color-fg-hi:    #073642;
+  --color-dim:      #93A1A1;
+  --color-accent:   #268BD2;
+  --color-keyword:  #859900;
+  --color-string:   #2AA198;
+  --color-number:   #D33682;
+  --color-func:     #268BD2;
+  --color-type:     #B58900;
+  --color-variable: #CB4B16;
+  --color-comment:  #93A1A1;
+  --color-attr:     #268BD2;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   BASE RESETS
+   ════════════════════════════════════════════════════════════════ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-ui);
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  height: 100%;
+}
+
+/* overflow: hidden intentional — chrome manages its own scroll regions */
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+code,
+pre,
+kbd {
+  font-family: var(--font-code);
+  font-size: 13px;
+}
+
+::selection {
+  background: var(--color-selection);
+}
