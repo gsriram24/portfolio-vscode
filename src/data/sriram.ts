@@ -17,7 +17,7 @@ export const SRIRAM = {
   location: "Bengaluru",
   stack: ["vue", "nuxt", "nest", "node", "claude"],
   skills: ["Vue", "Nuxt", "React", "Nest", "Node", "TypeScript", "Claude"],
-  bio: "Fullstack Software Engineer, currently SDE-III at GoHighLevel. I build large-scale SaaS features across the Funnels & Websites platform — Ecommerce, AI-powered page builders, SEO tooling. Vue.js · Nuxt.js · NestJS · Node.js. I care about product quality, engineering ownership, and building things that move the needle.",
+  bio: "I'm a Fullstack Software Engineer currently working as an SDE-III at GoHighLevel, where I build large-scale SaaS features across the Funnels & Websites platform — from Ecommerce and AI-powered page builders to SEO tooling. I work across the stack with Vue.js, Nuxt.js, Node.js, and NestJS, and I care deeply about product quality, engineering ownership, and building things that actually move the needle.",
   shipping: ["schema-markup", "page-builder-ai-copilot", "funnels-and-websites"],
   featured: [
     { slug: "schema-markup", file: "schema-markup.tsx", label: "Schema Markup",   meta: "34,900+ schemas · AI-driven",          badge: "HighLevel", ext: "tsx" },
@@ -26,6 +26,7 @@ export const SRIRAM = {
   ],
   links: {
     email:    "gsriram2403@gmail.com",
+    resume:   "https://drive.google.com/file/d/12edOMqi3L_D1poXKup5NYzqL1_DgFxcM/view?usp=drive_link",
     github:   { label: "github/gsriram24",   url: "https://github.com/gsriram24" },
     linkedin: { label: "linkedin/gsriram24", url: "https://linkedin.com/in/gsriram24" },
     npm:      { label: "npm/@gsriram24",     url: "https://npmjs.com/~gsriram24" },

@@ -81,12 +81,14 @@ export function SriramPreview() {
             See all work
             <ArrowRight size={14} strokeWidth={2.25} aria-hidden />
           </button>
-          <button
-            type="button"
-            className="px-5 py-2.5 rounded-sm font-ui text-[13.5px] cursor-pointer bg-transparent text-fg border border-muted transition-colors duration-(--duration-fast) ease-vscode hover:border-dim hover:text-fg-hi"
+          <a
+            href={SRIRAM.links.resume}
+            target="_blank"
+            rel="noreferrer"
+            className="px-5 py-2.5 rounded-sm font-ui text-[13.5px] cursor-pointer bg-transparent text-fg border border-muted no-underline transition-colors duration-(--duration-fast) ease-vscode hover:border-dim hover:text-fg-hi"
           >
-            Download CV
-          </button>
+            Resume
+          </a>
           <div className="ml-auto flex items-center gap-2 font-code text-[10.5px] text-dim">
             prev:
             {SRIRAM.prevCompanies.map((c) => (
