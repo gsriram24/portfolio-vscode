@@ -24,11 +24,9 @@ export const SRIRAM = {
     { slug: "ask-ai",        file: "ask-ai.tsx",        label: "Page Builder AI", meta: "157K funnels · 61K customers",         badge: "HighLevel", ext: "tsx" },
     { slug: "postbox28",     file: "postbox28.tsx",     label: "Postbox28",       meta: "React · Tailwind · GSAP · Contentful", badge: "Client",    ext: "tsx" },
   ],
+  // email + socials live in CONTACT (src/data/contact.ts); homepage imports both.
+  // links.resume stays here because it's a CV download, not a contact channel.
   links: {
-    email:    "gsriram2403@gmail.com",
-    resume:   "https://drive.google.com/file/d/12edOMqi3L_D1poXKup5NYzqL1_DgFxcM/view?usp=drive_link",
-    github:   { label: "github/gsriram24",   url: "https://github.com/gsriram24" },
-    linkedin: { label: "linkedin/gsriram24", url: "https://linkedin.com/in/gsriram24" },
-    npm:      { label: "npm/@gsriram24",     url: "https://npmjs.com/~gsriram24" },
+    resume: "https://drive.google.com/file/d/12edOMqi3L_D1poXKup5NYzqL1_DgFxcM/view?usp=drive_link",
   },
 } as const;

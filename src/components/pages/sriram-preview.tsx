@@ -2,6 +2,15 @@ import Link from "next/link";
 import { ArrowRight, ArrowUp } from "lucide-react";
 import { type ReactNode } from "react";
 import { SRIRAM } from "@/data/sriram";
+import { CONTACT } from "@/data/contact";
+
+// Homepage social row labels — curated display strings for CONTACT URLs.
+// Lives here (not in CONTACT) because labels are a render concern, not data.
+const HOMEPAGE_SOCIALS = [
+  { label: "github/gsriram24",   url: CONTACT.github },
+  { label: "linkedin/gsriram24", url: CONTACT.linkedin },
+  { label: "npm/@gsriram24",     url: CONTACT.npm },
+];
 
 // Preview view per gsriram.dev Handoff.html:149-270 (HomepagePreview).
 // Colors via tokens (text-X / bg-X / border-X compile from --color-X in @theme).
@@ -107,12 +116,12 @@ export function SriramPreview() {
         {/* 8. Social links — default dim, hover → accent (blue = hover signal, not rest) */}
         <nav className="mt-5 flex gap-5 flex-wrap font-code text-[12px]">
           <a
-            href={`mailto:${SRIRAM.links.email}`}
+            href={`mailto:${CONTACT.email}`}
             className="no-underline text-dim transition-colors duration-(--duration-fast) ease-vscode hover:text-accent"
           >
-            {SRIRAM.links.email}
+            {CONTACT.email}
           </a>
-          {[SRIRAM.links.github, SRIRAM.links.linkedin, SRIRAM.links.npm].map((l) => (
+          {HOMEPAGE_SOCIALS.map((l) => (
             <a
               key={l.url}
               href={l.url}
