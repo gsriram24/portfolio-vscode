@@ -23,7 +23,7 @@ export function CodeBlock({
   const [currentLine, setCurrentLine] = useState<number | null>(initialCurrent ?? null);
 
   return (
-    <div className="py-2 overflow-x-auto font-code">
+    <div className="h-full overflow-auto py-2 font-code">
       {lines.map((line, i) => {
         const n = i + 1;
         return (
