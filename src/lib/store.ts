@@ -3,7 +3,15 @@ import { create } from "zustand";
 export type ViewMode = "source" | "split" | "preview";
 export type PanelId = "explorer" | "search" | "settings";
 
-const PINNED_TABS = ["Sriram.tsx"];
+// Pinned tabs open on first load per the handoff IA (README.md line 76):
+//   Sriram.tsx
+//   experience/highlevel/schema-markup.tsx
+//   experience/highlevel/ask-ai.tsx
+const PINNED_TABS = [
+  "Sriram.tsx",
+  "experience/highlevel/schema-markup.tsx",
+  "experience/highlevel/ask-ai.tsx",
+];
 
 interface ChromeStore {
   tabs: string[];

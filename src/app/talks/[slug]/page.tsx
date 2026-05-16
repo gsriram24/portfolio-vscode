@@ -1,10 +1,8 @@
-import { listingProjects } from "@/lib/projects";
+import { TALKS } from "@/data/talks";
 import { PlaceholderPage } from "@/components/pages/PlaceholderPage";
 
-// Only non-work-product projects render at /projects/[slug]. Work-products
-// live under /experience/[co]/[project].
 export function generateStaticParams() {
-  return listingProjects().map((p) => ({ slug: p.slug }));
+  return TALKS.map((t) => ({ slug: t.slug }));
 }
 
 export const dynamicParams = false;
@@ -14,11 +12,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return { title: `${slug}.tsx — gsriram.dev` };
 }
 
-export default async function ProjectSlugPage({
+export default async function TalkPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  return <PlaceholderPage tabId={`projects/${slug}.tsx`} />;
+  return <PlaceholderPage tabId={`talks/${slug}.tsx`} />;
 }
