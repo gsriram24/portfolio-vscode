@@ -34,6 +34,7 @@ export interface ProjectEntry {
   duration?: string;           // "Dec 2025 – present"
   tags?: string[];             // freeform display strings ("Frontend", "Animation"); render header as duration + tags joined; chips on grid card
   featured?: boolean;          // appears on homepage hero grid
+  hasDetailPage?: boolean;     // default true. Set false when content is too thin to warrant a /detail page — CompanyEntry then renders the project inline (no → arrow, no link).
   summary: string;             // 1-2 sentences (Company inline blocks + listing cards)
   meta?: string;               // short punchy stat ("34,900+ schemas · AI-driven") — homepage featured card only
   description: string;         // long form prose (newlines allowed)
