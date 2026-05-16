@@ -18,15 +18,18 @@ interface ChromeStore {
   // LRU tab focus history (oldest → most-recent). Used by close-tab logic
   // to navigate back to the most-recently-active tab, matching VSCode.
   recentTabs: string[];
-  viewModes: Record<string, ViewMode>;
+  // Global view mode — one preference across every page. Toggling on any
+  // page applies to all. Per-tab mode was the original design but added
+  // complexity for no real UX win (users expect a global preference like
+  // theme).
+  viewMode: ViewMode;
   activePanel: PanelId | null;
   activeTab: string;
   collapsedFolders: ReadonlySet<string>;
   navOpen: boolean;
   openTab: (id: string) => void;
   closeTab: (id: string) => void;
-  setViewMode: (id: string, mode: ViewMode) => void;
-  getViewMode: (id: string) => ViewMode;
+  setViewMode: (mode: ViewMode) => void;
   setActivePanel: (panel: PanelId | null) => void;
   setActiveTab: (id: string) => void;
   toggleFolder: (path: string) => void;
@@ -42,10 +45,10 @@ function ancestorsOf(filePath: string): string[] {
   return out;
 }
 
-export const useChromeStore = create<ChromeStore>((set, get) => ({
+export const useChromeStore = create<ChromeStore>((set) => ({
   tabs: PINNED_TABS,
   recentTabs: [PINNED_TABS[0]],
-  viewModes: {},
+  viewMode: "preview",
   activePanel: "explorer",
   activeTab: PINNED_TABS[0],
   collapsedFolders: new Set(),
@@ -70,9 +73,7 @@ export const useChromeStore = create<ChromeStore>((set, get) => ({
         activeTab: nextActive,
       };
     }),
-  setViewMode: (id, mode) =>
-    set((s) => ({ viewModes: { ...s.viewModes, [id]: mode } })),
-  getViewMode: (id) => get().viewModes[id] ?? "preview",
+  setViewMode: (mode) => set({ viewMode: mode }),
   setActivePanel: (panel) => set({ activePanel: panel }),
   setActiveTab: (id) =>
     set((s) => {

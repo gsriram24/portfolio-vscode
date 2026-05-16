@@ -31,11 +31,7 @@ export function ViewModeToggle({
   twoWay?: boolean;
   size?: "desktop" | "tablet" | "mobile";
 }) {
-  // Subscribe to the value (viewModes[activeTab]) — NOT to getViewMode itself.
-  // Selecting the function returns a stable ref that never triggers re-renders
-  // when the value changes, so the active-highlight would stay stale.
-  const activeTab = useChromeStore((s) => s.activeTab);
-  const viewMode = useChromeStore((s) => s.viewModes[activeTab] ?? "preview");
+  const viewMode = useChromeStore((s) => s.viewMode);
   const setViewMode = useChromeStore((s) => s.setViewMode);
   const modes = twoWay ? MODES_2 : MODES_3;
   const padding = SIZE_PADDING[size];
@@ -48,7 +44,7 @@ export function ViewModeToggle({
           <button
             key={id}
             title={label}
-            onClick={() => setViewMode(activeTab, id)}
+            onClick={() => setViewMode(id)}
             className={`flex items-center justify-center ${padding} cursor-pointer ${
               active ? "bg-side-hi text-fg-hi" : "bg-transparent text-dim"
             }`}

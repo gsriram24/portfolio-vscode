@@ -46,9 +46,8 @@ const HOMEPAGE_SOCIALS = [
 // - Ghost CTA:     hover → border dim + color fgHi, transition fast
 export function SriramPreview() {
   return (
-    <div className="bg-bg min-h-full">
-      <div className="max-w-480 pl-5 pr-5 pt-6 pb-7 md:pl-12 md:pr-8 md:pt-10 md:pb-14 xl:pl-12 xl:pr-12 xl:pt-10 xl:pb-14 flex flex-col">
-        {/* 1. Status badge — pulsing dot + "SHIPPING AT HIGHLEVEL" */}
+    <>
+      {/* 1. Status badge — pulsing dot + "SHIPPING AT HIGHLEVEL" */}
         <div className="flex items-center gap-2 mb-6 font-code text-[10.5px] text-dim uppercase tracking-[0.12em] whitespace-nowrap">
           <span className="w-1.75 h-1.75 rounded-full inline-block shrink-0 bg-shipping animate-[hl-pulse_2.4s_ease-in-out_infinite]" />
           SHIPPING AT
@@ -147,8 +146,7 @@ export function SriramPreview() {
             </a>
           ))}
         </nav>
-      </div>
-    </div>
+    </>
   );
 }
 
