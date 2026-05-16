@@ -11,12 +11,12 @@ export function HintBar() {
   const dotColor = EXT_COLORS[ext as FileExt] ?? "var(--color-dim)";
 
   return (
-    <div className="h-12 bg-bg-elev border-b border-border flex items-center justify-between px-3 shrink-0 gap-2">
-      <span className="flex items-center gap-1.5 font-code text-code text-fg overflow-hidden">
-        <span className="text-[9px] shrink-0" style={{ color: dotColor }}>●</span>
+    <div className="h-12 bg-title-bar border-b border-border flex items-center justify-between px-4 shrink-0 gap-2">
+      <span className="flex items-center gap-2 font-code text-code text-title-text overflow-hidden">
+        <span className="text-meta shrink-0" style={{ color: dotColor }}>●</span>
         <span className="overflow-hidden text-ellipsis whitespace-nowrap">{fileName}</span>
       </span>
-      <ViewModeToggle twoWay />
+      <ViewModeToggle twoWay size="mobile" />
     </div>
   );
 }

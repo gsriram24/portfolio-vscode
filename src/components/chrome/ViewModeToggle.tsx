@@ -14,15 +14,32 @@ const MODES_2: { id: ViewMode; Icon: LucideIcon; label: string }[] = [
   { id: "preview", Icon: PanelRight, label: "Preview" },
 ];
 
-export function ViewModeToggle({ twoWay = false }: { twoWay?: boolean }) {
+// Per-viewport padding from handoff:
+//   desktop TitleBar:  3px 7px   (homepages4.jsx)
+//   tablet  TabBar:    3px 8px   (contact.jsx ContactTabletArtboard)
+//   mobile  HintBar:   6px 12px  (interactions.jsx MobileShell)
+const SIZE_PADDING: Record<"desktop" | "tablet" | "mobile", string> = {
+  desktop: "px-[7px] py-[3px]",
+  tablet: "px-2 py-[3px]",
+  mobile: "px-3 py-1.5",
+};
+
+export function ViewModeToggle({
+  twoWay = false,
+  size = "desktop",
+}: {
+  twoWay?: boolean;
+  size?: "desktop" | "tablet" | "mobile";
+}) {
   const activeTab = useChromeStore((s) => s.activeTab);
   const getViewMode = useChromeStore((s) => s.getViewMode);
   const setViewMode = useChromeStore((s) => s.setViewMode);
   const viewMode = getViewMode(activeTab);
   const modes = twoWay ? MODES_2 : MODES_3;
+  const padding = SIZE_PADDING[size];
 
   return (
-    <div className="flex border border-border rounded-[3px] overflow-hidden shrink-0">
+    <div className="flex bg-bg border border-border rounded-[3px] overflow-hidden shrink-0">
       {modes.map(({ id, Icon, label }) => {
         const active = viewMode === id;
         return (
@@ -30,7 +47,7 @@ export function ViewModeToggle({ twoWay = false }: { twoWay?: boolean }) {
             key={id}
             title={label}
             onClick={() => setViewMode(activeTab, id)}
-            className={`flex items-center justify-center px-[7px] py-[3px] cursor-pointer ${
+            className={`flex items-center justify-center ${padding} cursor-pointer ${
               active ? "bg-side-hi text-fg-hi" : "bg-transparent text-dim"
             }`}
           >

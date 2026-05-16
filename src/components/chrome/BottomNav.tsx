@@ -26,14 +26,20 @@ export function BottomNav() {
             key={id}
             onClick={wired ? () => setNavOpen(!navOpen) : undefined}
             disabled={!wired}
-            className={`flex-1 flex flex-col items-center justify-center gap-1 font-ui text-meta ${
+            className={`flex-1 flex flex-col items-center justify-center gap-1 font-code bg-transparent ${
               i > 0 ? "border-l border-border" : ""
             } ${wired ? "cursor-pointer" : "cursor-not-allowed opacity-50"} ${
-              active ? "bg-side-hi text-fg-hi" : "bg-transparent text-dim"
+              active ? "bg-side-hi" : ""
             }`}
           >
-            <Icon size={20} />
-            <span>{label}</span>
+            <Icon size={20} className={active ? "text-fg-hi" : "text-activity-inactive"} />
+            <span
+              className={`text-[9px] tracking-wider ${
+                active ? "text-accent" : "text-activity-inactive"
+              }`}
+            >
+              {label}
+            </span>
           </button>
         );
       })}

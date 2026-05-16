@@ -4,7 +4,9 @@ import { useChromeStore } from "@/lib/store";
 import { EXT_COLORS, type FileExt } from "@/data/files";
 import { ViewModeToggle } from "./ViewModeToggle";
 
-// Design: padding 0 14px per tab · gap 8 · dot fontSize 11 · close × char at fontSize 14 color muted
+// Design (handoff):
+//   tablet  — padding 0 12 · gap 6 · fontSize 12   · dot 10 · × 13   (contact.jsx ContactTabletArtboard)
+//   desktop — padding 0 14 · gap 8 · fontSize 12.5 · dot 11 · × 14   (homepages4.jsx Tabs)
 function TabItem({ id, active }: { id: string; active: boolean }) {
   const setActiveTab = useChromeStore((s) => s.setActiveTab);
   const closeTab = useChromeStore((s) => s.closeTab);
@@ -20,22 +22,22 @@ function TabItem({ id, active }: { id: string; active: boolean }) {
           closeTab(id);
         }
       }}
-      className={`flex items-center gap-2 px-3.5 h-full font-code text-[12.5px] border-r border-border shrink-0 whitespace-nowrap select-none border-t ${
+      className={`flex items-center gap-1.5 xl:gap-2 px-3 xl:px-3.5 h-full font-code text-[12px] xl:text-[12.5px] border-r border-border shrink-0 whitespace-nowrap select-none border-t ${
         active ? "bg-bg text-fg-hi border-t-accent" : "bg-transparent text-dim border-t-transparent"
       }`}
     >
       <button
         onClick={() => setActiveTab(id)}
-        className="flex items-center gap-2 cursor-pointer bg-transparent text-inherit"
+        className="flex items-center gap-1.5 xl:gap-2 cursor-pointer bg-transparent text-inherit"
       >
-        <span className="text-meta" style={{ color: dotColor }}>
+        <span className="text-[10px] xl:text-meta" style={{ color: dotColor }}>
           ●
         </span>
         {fileName}
       </button>
       <button
         onClick={() => closeTab(id)}
-        className="flex items-center justify-center cursor-pointer bg-transparent text-muted text-sm leading-none"
+        className="flex items-center justify-center cursor-pointer bg-transparent text-muted text-code xl:text-sm leading-none"
         title={`Close ${fileName}`}
       >
         ×
@@ -58,7 +60,7 @@ export function TabBar() {
 
       {/* View mode toggle — tablet only */}
       <div className="hidden md:flex xl:hidden items-center px-2 border-l border-border">
-        <ViewModeToggle />
+        <ViewModeToggle size="tablet" />
       </div>
     </div>
   );
