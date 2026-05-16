@@ -255,8 +255,10 @@ export const PROJECTS: ProjectEntry[] = [
     type: "oss",
     duration: "2026",
     tags: ["Open Source", "Backend"],
+    featured: true,
     summary:
       "Fork of Adobe's Schema.org validator — fieldName-aware errors, 6 new schema type validators, automatic subtype inheritance for 100+ types. Upstream PRs submitted.",
+    meta: "179 monthly downloads · Adobe upstream",
     description:
       "An open-source extension of Adobe's structured-data-validator npm package — improves developer experience around Schema.org validation by surfacing field names in error messages, adding new schema type validators, and inheriting validation rules across the Schema.org type hierarchy. Several features contributed upstream via PRs.",
     highlights: [
@@ -324,7 +326,6 @@ export const PROJECTS: ProjectEntry[] = [
     type: "client",
     duration: "2022",
     tags: ["Frontend", "Animation"],
-    featured: true,
     summary:
       "Graphic-intensive, animation-heavy website for a post-production studio in Mumbai. React + GSAP + Contentful CMS.",
     meta: "React · Tailwind · GSAP · Contentful",
