@@ -93,6 +93,7 @@ export function SriramPreview() {
               <Link
                 key={c.slug}
                 href={`/experience/${c.slug}`}
+                prefetch={false}
                 className="px-2 py-0.75 rounded-[3px] bg-side border border-border transition-colors duration-(--duration-fast) ease-vscode hover:border-accent hover:bg-side-hi"
               >
                 {c.name}
@@ -148,6 +149,7 @@ function FeaturedCard({ card }: { card: (typeof SRIRAM.featured)[number] }) {
   return (
     <Link
       href={`/projects/${card.slug}`}
+      prefetch={false}
       className="block p-4 bg-side border border-border rounded-sm transition-colors duration-(--duration-fast) ease-vscode hover:border-accent hover:bg-side-hi"
     >
       <article className="flex flex-col gap-1.75">

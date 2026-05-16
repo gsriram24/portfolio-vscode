@@ -72,7 +72,6 @@
   /* ── Fonts (next/font injects these CSS vars onto <html>) ── */
   --font-ui:    var(--font-ibm-plex-sans), sans-serif;
   --font-code:  var(--font-cascadia-code), monospace;
-  --font-prose: var(--font-newsreader), serif;
 }
 
 /* ════════════════════════════════════════════════════════════════

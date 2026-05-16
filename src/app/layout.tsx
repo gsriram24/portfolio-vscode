@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
 import type { Metadata } from "next";
-import { ibmPlexSans, cascadiaCode, newsreader } from "@/lib/fonts";
+import { ibmPlexSans, cascadiaCode } from "@/lib/fonts";
 import { ChromeShell } from "@/components/chrome/ChromeShell";
 import "./globals.css";
 
@@ -15,9 +15,13 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
+    // suppressHydrationWarning: the inline <script> below mutates html.data-theme
+    // before React hydrates (so we paint with the user's stored theme, no flash).
+    // React would otherwise warn that server (no attr) ≠ client (attr set).
     <html
       lang="en"
-      className={`${ibmPlexSans.variable} ${cascadiaCode.variable} ${newsreader.variable}`}
+      suppressHydrationWarning
+      className={`${ibmPlexSans.variable} ${cascadiaCode.variable}`}
     >
       <head>
         <script
