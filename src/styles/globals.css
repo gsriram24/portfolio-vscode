@@ -51,15 +51,23 @@
   --duration-med:   200ms;
   --duration-slow:  320ms;
 
-  /* ── Type scale — Tailwind v4 reads --text-X (not --font-size-X) to generate text-X utilities ── */
-  --text-display: 64px;
-  --text-h1:      48px;
-  --text-h2:      32px;
-  --text-h3:      24px;
-  --text-lead:    18px;
-  --text-body:    16px;
-  --text-code:    13px;
-  --text-meta:    11px;
+  /* ── Type scale — mobile-first defaults; @media blocks below override at md / xl
+        Each token has three values (sm / md / base) per the design system:
+          display 32 → 42 → 54   |  h1 28 → 36 → 48   |  h2 22 → 26 → 32
+          h3      18 → 20 → 24   |  lead 15 → 16 → 18 |  body 14 → 15 → 16
+          ui      13 → 13 → 14   |  code 12 → 12 → 13 |  meta 10 → 11 → 11
+        Components use `text-display`/`text-h1`/.../`text-meta` once — the variable
+        re-evaluates per viewport, so no responsive prefixes needed at the call site.
+  ── */
+  --text-display: 32px;
+  --text-h1:      28px;
+  --text-h2:      22px;
+  --text-h3:      18px;
+  --text-lead:    15px;
+  --text-body:    14px;
+  --text-ui:      13px;
+  --text-code:    12px;
+  --text-meta:    10px;
 
   /* ── Fonts (next/font injects these CSS vars onto <html>) ── */
   --font-ui:    var(--font-ibm-plex-sans), sans-serif;
@@ -73,6 +81,41 @@
    ════════════════════════════════════════════════════════════════ */
 :root {
   --color-punct: var(--color-fg);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   RESPONSIVE TYPE SCALE — override --text-* per viewport.
+   Tokens already declared (sm defaults) in @theme above; here we
+   step them up at md (≥768px) and xl (≥1280px).
+   The text-X utility classes always reference var(--text-X), so the
+   class is the same at every viewport — only the variable changes.
+   ════════════════════════════════════════════════════════════════ */
+@media (min-width: 768px) {
+  :root {
+    --text-display: 42px;
+    --text-h1:      36px;
+    --text-h2:      26px;
+    --text-h3:      20px;
+    --text-lead:    16px;
+    --text-body:    15px;
+    --text-ui:      13px;
+    --text-code:    12px;
+    --text-meta:    11px;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --text-display: 54px;
+    --text-h1:      48px;
+    --text-h2:      32px;
+    --text-h3:      24px;
+    --text-lead:    18px;
+    --text-body:    16px;
+    --text-ui:      14px;
+    --text-code:    13px;
+    --text-meta:    11px;
+  }
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -249,6 +292,17 @@
 
   ::selection {
     background: var(--color-selection);
+  }
+
+  @keyframes hl-pulse {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 0 0 rgba(106, 153, 85, 0.5);
+    }
+    60% {
+      opacity: 0.6;
+      box-shadow: 0 0 0 5px rgba(106, 153, 85, 0);
+    }
   }
 }
 

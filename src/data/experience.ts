@@ -5,4 +5,6 @@ export interface CompanyMeta {
 
 export const EXPERIENCE: CompanyMeta[] = [
   { slug: "highlevel", name: "HighLevel" },
+  { slug: "betsol",    name: "BETSOL" },
+  { slug: "dhiyo",     name: "Dhiyo" },
 ];

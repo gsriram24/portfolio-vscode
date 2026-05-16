@@ -10,16 +10,19 @@ export const SRIRAM = {
   company: "HighLevel",
   companySince: "Dec '23",
   promotedAt: "Jun '25",
-  prevCompanies: ["BETSOL", "Dhiyo"],
+  prevCompanies: [
+    { name: "BETSOL", slug: "betsol" },
+    { name: "Dhiyo", slug: "dhiyo" },
+  ],
   location: "Bengaluru",
   stack: ["vue", "nuxt", "nest", "node", "claude"],
   skills: ["Vue", "Nuxt", "React", "Nest", "Node", "TypeScript", "Claude"],
   bio: "Fullstack engineer at GoHighLevel, building large-scale SaaS features across the Funnels & Websites platform — ecommerce, AI-powered page builders, and SEO tooling. Vue · Nuxt · NestJS · Node. I care about ownership and shipping things that actually move the needle.",
   shipping: ["schema-markup", "page-builder-ai-copilot", "funnels-and-websites"],
   featured: [
-    { file: "schema-markup.tsx", label: "Schema Markup",   meta: "34,900+ schemas · AI-driven",  badge: "HighLevel", ext: "tsx" },
-    { file: "ask-ai.tsx",        label: "Page Builder AI", meta: "157K funnels · 61K customers", badge: "HighLevel", ext: "tsx" },
-    { file: "postbox28.tsx",     label: "Postbox28",       meta: "React · GSAP · Contentful",    badge: "Client",    ext: "tsx" },
+    { slug: "schema-markup", file: "schema-markup.tsx", label: "Schema Markup",   meta: "34,900+ schemas · AI-driven",  badge: "HighLevel", ext: "tsx" },
+    { slug: "ask-ai",        file: "ask-ai.tsx",        label: "Page Builder AI", meta: "157K funnels · 61K customers", badge: "HighLevel", ext: "tsx" },
+    { slug: "postbox28",     file: "postbox28.tsx",     label: "Postbox28",       meta: "React · GSAP · Contentful",    badge: "Client",    ext: "tsx" },
   ],
   links: {
     email:    "hi@gsriram.dev",
