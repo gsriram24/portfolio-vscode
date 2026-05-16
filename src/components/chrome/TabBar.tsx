@@ -58,9 +58,9 @@ export function TabBar() {
         ))}
       </div>
 
-      {/* View mode toggle — tablet only */}
+      {/* View mode toggle — tablet only (twoWay; Split is desktop-only) */}
       <div className="hidden md:flex xl:hidden items-center px-2 border-l border-border">
-        <ViewModeToggle size="tablet" />
+        <ViewModeToggle size="tablet" twoWay />
       </div>
     </div>
   );
