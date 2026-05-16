@@ -97,6 +97,7 @@ export interface StackCategory {
   id: string;
   label: string;
   note?: string;
+  color: string;               // CSS var ref ("var(--color-type)") — drives heading dot + skill chip dots per design's STACK rendering
   items: string[];
 }
 
