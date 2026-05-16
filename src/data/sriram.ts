@@ -17,7 +17,7 @@ export const SRIRAM = {
   location: "Bengaluru",
   stack: ["vue", "nuxt", "nest", "node", "claude"],
   skills: ["Vue", "Nuxt", "React", "Nest", "Node", "TypeScript", "Claude"],
-  bio: "I'm a Fullstack Software Engineer currently working as an SDE-III at GoHighLevel, where I build large-scale SaaS features across the Funnels & Websites platform — from Ecommerce and AI-powered page builders to SEO tooling. I work across the stack with Vue.js, Nuxt.js, Node.js, and NestJS, and I care deeply about product quality, engineering ownership, and building things that actually move the needle.",
+  bio: "Working on HighLevel's Funnels & Websites platform — 100K+ daily users, 500K+ weekly visitors. I tend to take features end-to-end: architected Schema Markup from scratch to 34K+ live schemas, led frontend on Page Builder AI through 157K+ AI-generated funnels, and stood up TDD-first E2E coverage for 19 schema families. I care about ownership and shipping things that actually move the needle.",
   shipping: ["schema-markup", "page-builder-ai-copilot", "funnels-and-websites"],
   featured: [
     { slug: "schema-markup", file: "schema-markup.tsx", label: "Schema Markup",   meta: "34,900+ schemas · AI-driven",          badge: "HighLevel", ext: "tsx" },
