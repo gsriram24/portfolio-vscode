@@ -38,14 +38,14 @@ export function CodeLine({
         {n}
       </span>
       <span
-        className="flex-1 font-code text-[13.5px] leading-[1.65] text-fg whitespace-pre"
+        className="font-code text-[13.5px] leading-[1.65] text-fg whitespace-pre"
         style={{ paddingLeft: `calc(18px + ${indent * 2}ch)` }}
       >
         {children}
       </span>
       {blame && (
         <span
-          className="ml-auto pr-4 font-code text-meta italic shrink-0"
+          className="ml-auto pl-4 pr-4 font-code text-meta italic shrink-0"
           style={{ color: "var(--color-git-blame)" }}
         >
           {blame}
