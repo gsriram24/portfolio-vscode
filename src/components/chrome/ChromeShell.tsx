@@ -10,6 +10,7 @@ import { Breadcrumb } from "./Breadcrumb";
 import { StatusBar } from "./StatusBar";
 import { HintBar } from "./HintBar";
 import { BottomNav } from "./BottomNav";
+import { NavOverlay } from "./NavOverlay";
 
 export function ChromeShell({ children }: { children: ReactNode }) {
   const activeTab = useChromeStore((s) => s.activeTab);
@@ -60,6 +61,9 @@ export function ChromeShell({ children }: { children: ReactNode }) {
       <div className="block md:hidden">
         <BottomNav />
       </div>
+
+      {/* Slide-in nav overlay — tablet + mobile */}
+      <NavOverlay />
     </div>
   );
 }

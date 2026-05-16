@@ -11,6 +11,7 @@ interface ChromeStore {
   activePanel: PanelId | null;
   activeTab: string;
   collapsedFolders: ReadonlySet<string>;
+  navOpen: boolean;
   openTab: (id: string) => void;
   closeTab: (id: string) => void;
   setViewMode: (id: string, mode: ViewMode) => void;
@@ -18,6 +19,7 @@ interface ChromeStore {
   setActivePanel: (panel: PanelId | null) => void;
   setActiveTab: (id: string) => void;
   toggleFolder: (path: string) => void;
+  setNavOpen: (v: boolean) => void;
 }
 
 // Returns the set of ancestor folder paths for a file path.
@@ -35,6 +37,7 @@ export const useChromeStore = create<ChromeStore>((set, get) => ({
   activePanel: "explorer",
   activeTab: PINNED_TABS[0],
   collapsedFolders: new Set(),
+  navOpen: false,
   openTab: (id) =>
     set((s) => ({ tabs: s.tabs.includes(id) ? s.tabs : [...s.tabs, id] })),
   closeTab: (id) =>
@@ -54,14 +57,18 @@ export const useChromeStore = create<ChromeStore>((set, get) => ({
   setActivePanel: (panel) => set({ activePanel: panel }),
   setActiveTab: (id) =>
     set((s) => {
-      // Auto-expand every ancestor folder of the new active file
+      // Auto-expand every ancestor folder of the new active file, and close
+      // any mobile/tablet slide-in nav overlay so the chosen file is visible.
       const ancestors = ancestorsOf(id);
-      if (ancestors.every((a) => !s.collapsedFolders.has(a))) {
-        return { activeTab: id };
+      const needsExpand = ancestors.some((a) => s.collapsedFolders.has(a));
+      const patch: Partial<ChromeStore> = { activeTab: id };
+      if (s.navOpen) patch.navOpen = false;
+      if (needsExpand) {
+        const next = new Set(s.collapsedFolders);
+        ancestors.forEach((a) => next.delete(a));
+        patch.collapsedFolders = next;
       }
-      const next = new Set(s.collapsedFolders);
-      ancestors.forEach((a) => next.delete(a));
-      return { activeTab: id, collapsedFolders: next };
+      return patch;
     }),
   toggleFolder: (path) =>
     set((s) => {
@@ -70,4 +77,5 @@ export const useChromeStore = create<ChromeStore>((set, get) => ({
       else next.add(path);
       return { collapsedFolders: next };
     }),
+  setNavOpen: (v) => set({ navOpen: v }),
 }));

@@ -1,6 +1,5 @@
 "use client";
 
-import { Menu } from "lucide-react";
 import { useChromeStore } from "@/lib/store";
 import { ViewModeToggle } from "./ViewModeToggle";
 
@@ -24,14 +23,9 @@ export function TitleBar() {
         {fileName} — gsriram.dev
       </div>
 
-      {/* Desktop: view mode toggle */}
+      {/* Desktop: view mode toggle. Tablet sidebar toggles via the ActivityBar Files icon. */}
       <div className="hidden xl:flex shrink-0">
         <ViewModeToggle />
-      </div>
-
-      {/* Tablet: hamburger (Phase 7 wires the nav overlay) */}
-      <div className="flex xl:hidden shrink-0 text-dim cursor-pointer">
-        <Menu size={17} />
       </div>
     </div>
   );

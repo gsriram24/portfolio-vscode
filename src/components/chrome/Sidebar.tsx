@@ -73,7 +73,7 @@ function FileRow({
   );
 }
 
-function ExplorerPanel() {
+export function ExplorerPanel() {
   return (
     <div>
       {/* Design: padding 10px 16px 6px · fontSize 11 · letterSpacing 0.06em · uppercase · fontWeight 600 */}
@@ -112,7 +112,7 @@ export function Sidebar() {
   if (!activePanel) return null;
 
   return (
-    <div className="hidden xl:flex xl:flex-col w-60 bg-side border-r border-border shrink-0 overflow-y-auto">
+    <div className="hidden md:flex md:flex-col w-60 bg-side border-r border-border shrink-0 overflow-y-auto">
       {activePanel === "explorer" && <ExplorerPanel />}
       {activePanel === "search" && <SearchPanel />}
       {activePanel === "settings" && <SettingsPanel />}
