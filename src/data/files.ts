@@ -33,7 +33,7 @@ export function buildFileTree(): TreeNode[] {
     {
       name: "projects",
       children: [
-        { name: "index.tsx", ext: "tsx", path: "projects/index.tsx" },
+        { name: "index.ts", ext: "ts", path: "projects/index.ts" },
         ...PROJECTS.map((p) => ({
           name: `${p.slug}.tsx`,
           ext: "tsx" as FileExt,
@@ -47,9 +47,9 @@ export function buildFileTree(): TreeNode[] {
         name: c.slug,
         children: [
           {
-            name: "index.tsx",
-            ext: "tsx" as FileExt,
-            path: `experience/${c.slug}/index.tsx`,
+            name: "index.ts",
+            ext: "ts" as FileExt,
+            path: `experience/${c.slug}/index.ts`,
           },
         ],
       })),

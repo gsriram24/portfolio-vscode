@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { useChromeStore } from "@/lib/store";
 import { buildFileTree, EXT_COLORS, isDir, type TreeNode } from "@/data/files";
@@ -10,22 +9,26 @@ const FILE_TREE = buildFileTree();
 function FileRow({
   node,
   depth,
-  activePath,
+  parentPath = "",
 }: {
   node: TreeNode;
   depth: number;
-  activePath: string;
+  parentPath?: string;
 }) {
-  const [expanded, setExpanded] = useState(true);
   const setActiveTab = useChromeStore((s) => s.setActiveTab);
   const openTab = useChromeStore((s) => s.openTab);
-  const padLeft = depth === 0 && !isDir(node) ? 4 + 14 : 8 + depth * 14;
+  const toggleFolder = useChromeStore((s) => s.toggleFolder);
+  const dir = isDir(node);
+  const folderPath = dir ? (parentPath ? `${parentPath}/${node.name}` : node.name) : "";
+  const expanded = useChromeStore((s) => !s.collapsedFolders.has(folderPath));
+  const active = useChromeStore((s) => !dir && s.activeTab === (node as { path?: string }).path);
+  const padLeft = depth === 0 && !dir ? 4 + 14 : 8 + depth * 14;
 
-  if (isDir(node)) {
+  if (dir) {
     return (
       <>
         <button
-          onClick={() => setExpanded((v) => !v)}
+          onClick={() => toggleFolder(folderPath)}
           className="flex items-center gap-1.5 py-1 pr-2 w-full font-code text-code text-fg cursor-pointer select-none bg-transparent text-left transition-colors duration-(--duration-fast) ease-vscode hover:bg-side-hi"
           style={{ paddingLeft: padLeft }}
         >
@@ -42,14 +45,13 @@ function FileRow({
               key={isDir(child) ? child.name : child.path}
               node={child}
               depth={depth + 1}
-              activePath={activePath}
+              parentPath={folderPath}
             />
           ))}
       </>
     );
   }
 
-  const active = node.path === activePath;
   const dotColor = EXT_COLORS[node.ext];
 
   return (
@@ -72,7 +74,6 @@ function FileRow({
 }
 
 function ExplorerPanel() {
-  const activePath = useChromeStore((s) => s.activeTab);
   return (
     <div>
       {/* Design: padding 10px 16px 6px · fontSize 11 · letterSpacing 0.06em · uppercase · fontWeight 600 */}
@@ -84,7 +85,6 @@ function ExplorerPanel() {
           key={isDir(node) ? node.name : node.path}
           node={node}
           depth={0}
-          activePath={activePath}
         />
       ))}
     </div>
