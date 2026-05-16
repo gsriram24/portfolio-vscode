@@ -97,13 +97,13 @@ export function SriramPreview() {
 
         {/* 7. CTAs + prev companies */}
         <div className="mt-8 flex flex-wrap gap-2.5 items-center">
-          <button
-            type="button"
-            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-sm font-ui font-semibold text-[13.5px] tracking-[-0.01em] cursor-pointer border-0 bg-func text-bg transition-opacity duration-(--duration-fast) ease-vscode hover:opacity-85 active:opacity-70"
+          <Link
+            href="/experience/highlevel"
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-sm font-ui font-semibold text-[13.5px] tracking-[-0.01em] cursor-pointer border-0 bg-func text-bg no-underline transition-opacity duration-(--duration-fast) ease-vscode hover:opacity-85 active:opacity-70"
           >
-            See all work
+            View more
             <ArrowRight size={14} strokeWidth={2.25} aria-hidden />
-          </button>
+          </Link>
           <a
             href={SRIRAM.links.resume}
             target="_blank"
