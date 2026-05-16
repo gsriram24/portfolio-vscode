@@ -24,21 +24,25 @@ export function CodeBlock({
 
   return (
     <div className="h-full overflow-auto py-2 font-code">
-      {lines.map((line, i) => {
-        const n = i + 1;
-        return (
-          <CodeLine
-            key={n}
-            n={n}
-            current={n === currentLine}
-            indent={line.indent}
-            blame={line.blame}
-            onClick={() => setCurrentLine(n)}
-          >
-            {line.content}
-          </CodeLine>
-        );
-      })}
+      {/* Inner is sized to the widest line (max-content) but at least viewport (min-w-full).
+          All rows inherit this same width → uniform highlight extent across the whole block. */}
+      <div className="w-max min-w-full">
+        {lines.map((line, i) => {
+          const n = i + 1;
+          return (
+            <CodeLine
+              key={n}
+              n={n}
+              current={n === currentLine}
+              indent={line.indent}
+              blame={line.blame}
+              onClick={() => setCurrentLine(n)}
+            >
+              {line.content}
+            </CodeLine>
+          );
+        })}
+      </div>
     </div>
   );
 }

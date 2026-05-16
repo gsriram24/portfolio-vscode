@@ -29,9 +29,7 @@ export function CodeLine({
     <div
       onClick={onClick}
       className={`flex items-baseline min-h-5.5 border-l-2 ${onClick ? "cursor-text" : ""} ${
-        current
-          ? "bg-[rgba(99,109,130,0.10)] border-accent"
-          : "border-transparent"
+        current ? "bg-[rgba(99,109,130,0.10)] border-accent" : "border-transparent"
       }`}
     >
       <span className="w-9 shrink-0 text-right font-code text-[12.5px] text-dim select-none">
