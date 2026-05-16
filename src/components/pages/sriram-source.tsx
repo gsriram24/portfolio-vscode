@@ -1,5 +1,6 @@
 import { CodeBlock, A, Fn, J, K, P, S, T, V, type CodeBlockLine } from "@/components/code";
 import { SRIRAM } from "@/data/sriram";
+import { CONTACT } from "@/data/contact";
 
 // Source view = `Sriram.tsx` body per homepages4.jsx:233-269.
 // - All data values flow from SRIRAM (SSOT).
@@ -41,7 +42,7 @@ const LINES: CodeBlockLine[] = [
       <>
         <J>{" * "}</J>
         <K>@reach</K>
-        <J>{`   ${SRIRAM.reach}`}</J>
+        <J>{`   ${CONTACT.email}`}</J>
       </>
     ),
   },
@@ -238,7 +239,7 @@ const LINES: CodeBlockLine[] = [
         <A>reach</A>
         <P>=</P>
         <P>{"{"}</P>
-        <S>&quot;{SRIRAM.reach}&quot;</S>
+        <S>&quot;{CONTACT.email}&quot;</S>
         <P>{"}"}</P>
       </>
     ),

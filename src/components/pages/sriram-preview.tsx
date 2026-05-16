@@ -3,6 +3,20 @@ import { ArrowRight, ArrowUp } from "lucide-react";
 import { type ReactNode } from "react";
 import { SRIRAM } from "@/data/sriram";
 import { CONTACT } from "@/data/contact";
+import { EXPERIENCE } from "@/data/experience";
+import { featuredProjects, pathForProject } from "@/lib/projects";
+import type { ProjectEntry } from "@/data/types";
+
+const PREV_COMPANIES = EXPERIENCE.filter((c) => c.slug !== "highlevel");
+
+function badgeForCard(p: ProjectEntry): string {
+  if (p.type === "work-product" && p.company) {
+    return EXPERIENCE.find((c) => c.slug === p.company)?.companyName ?? p.company;
+  }
+  if (p.type === "client") return "Client";
+  if (p.type === "oss") return "Open Source";
+  return "";
+}
 
 // Homepage social row labels — curated display strings for CONTACT URLs.
 // Lives here (not in CONTACT) because labels are a render concern, not data.
@@ -75,7 +89,7 @@ export function SriramPreview() {
             Featured work
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
-            {SRIRAM.featured.map((card) => (
+            {featuredProjects().map((card) => (
               <FeaturedCard key={card.slug} card={card} />
             ))}
           </div>
@@ -100,14 +114,14 @@ export function SriramPreview() {
           </a>
           <div className="ml-auto flex items-center gap-2 font-code text-[10.5px] text-dim">
             prev:
-            {SRIRAM.prevCompanies.map((c) => (
+            {PREV_COMPANIES.map((c) => (
               <Link
                 key={c.slug}
                 href={`/experience/${c.slug}`}
                 prefetch={false}
                 className="px-2 py-0.75 rounded-[3px] bg-side border border-border transition-colors duration-(--duration-fast) ease-vscode hover:border-accent hover:bg-side-hi"
               >
-                {c.name}
+                {c.companyName}
               </Link>
             ))}
           </div>
@@ -148,34 +162,24 @@ function MetaRow({ text, note }: { text: string; note?: ReactNode }) {
   );
 }
 
-function FeaturedCard({ card }: { card: (typeof SRIRAM.featured)[number] }) {
-  // dot color is dynamic per extension → inline style is the right tool here
-  // (Tailwind can't generate class names from runtime values)
-  const dotColors: Record<string, string> = {
-    tsx: "var(--color-func)",
-    ts: "var(--color-type)",
-    md: "var(--color-accent)",
-    json: "var(--color-string)",
-  };
+function FeaturedCard({ card }: { card: ProjectEntry }) {
+  // All featured projects are .tsx — color matches the file extension token.
   return (
     <Link
-      href={`/projects/${card.slug}`}
+      href={pathForProject(card)}
       prefetch={false}
       className="block p-4 bg-side border border-border rounded-sm transition-colors duration-(--duration-fast) ease-vscode hover:border-accent hover:bg-side-hi"
     >
       <article className="flex flex-col gap-1.75">
         <header className="flex items-center justify-between">
-          <span
-            className="font-code text-[10px]"
-            style={{ color: dotColors[card.ext] ?? "var(--color-dim)" }}
-          >
-            ● {card.file}
+          <span className="font-code text-[10px] text-func">
+            ● {card.slug}.tsx
           </span>
           <span className="font-code text-[9px] text-dim bg-muted px-1.5 py-0.5 rounded-xs">
-            {card.badge}
+            {badgeForCard(card)}
           </span>
         </header>
-        <h3 className="font-ui text-ui font-semibold text-fg-hi m-0">{card.label}</h3>
+        <h3 className="font-ui text-ui font-semibold text-fg-hi m-0">{card.title}</h3>
         <p className="font-code text-[10.5px] text-dim m-0">{card.meta}</p>
       </article>
     </Link>
