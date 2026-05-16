@@ -1,6 +1,6 @@
 export const THEME_IDS = [
   "dark-plus",
-  "dark-modern",
+  "tomorrow",
   "monokai",
   "solarized-dark",
   "light-plus",
@@ -11,7 +11,7 @@ export type ThemeId = (typeof THEME_IDS)[number];
 
 export const THEME_LABELS: Record<ThemeId, string> = {
   "dark-plus": "Dark+ (Default)",
-  "dark-modern": "Dark Modern",
+  "tomorrow": "Tomorrow Night Blue",
   monokai: "Monokai",
   "solarized-dark": "Solarized Dark",
   "light-plus": "Light+ (Default)",

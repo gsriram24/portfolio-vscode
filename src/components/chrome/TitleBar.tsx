@@ -19,8 +19,8 @@ export function TitleBar() {
         ))}
       </div>
 
-      {/* Center title */}
-      <div className="flex-1 text-center font-code text-meta text-fg overflow-hidden text-ellipsis whitespace-nowrap">
+      {/* Center title — #CCCCCC per design spec, not a theme token */}
+      <div className="flex-1 text-center font-code text-[11.5px] overflow-hidden text-ellipsis whitespace-nowrap text-title-text">
         {fileName} — gsriram.dev
       </div>
 
