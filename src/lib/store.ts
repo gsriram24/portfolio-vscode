@@ -7,6 +7,9 @@ const PINNED_TABS = ["Sriram.tsx"];
 
 interface ChromeStore {
   tabs: string[];
+  // LRU tab focus history (oldest → most-recent). Used by close-tab logic
+  // to navigate back to the most-recently-active tab, matching VSCode.
+  recentTabs: string[];
   viewModes: Record<string, ViewMode>;
   activePanel: PanelId | null;
   activeTab: string;
@@ -33,6 +36,7 @@ function ancestorsOf(filePath: string): string[] {
 
 export const useChromeStore = create<ChromeStore>((set, get) => ({
   tabs: PINNED_TABS,
+  recentTabs: [PINNED_TABS[0]],
   viewModes: {},
   activePanel: "explorer",
   activeTab: PINNED_TABS[0],
@@ -43,12 +47,19 @@ export const useChromeStore = create<ChromeStore>((set, get) => ({
   closeTab: (id) =>
     set((s) => {
       const nextTabs = s.tabs.filter((t) => t !== id);
+      // Drop the closed tab from history so it can't be picked as "next."
+      const nextRecent = s.recentTabs.filter((t) => t !== id);
+      // If the active tab is being closed, switch to the most-recently-active
+      // tab that is still open (VSCode-style). Falls back to the leftmost
+      // remaining tab if history is empty.
+      const nextActive =
+        s.activeTab === id
+          ? (nextRecent[nextRecent.length - 1] ?? nextTabs[0] ?? "")
+          : s.activeTab;
       return {
         tabs: nextTabs,
-        activeTab:
-          s.activeTab === id
-            ? (nextTabs.find((t) => t !== id) ?? nextTabs[0] ?? "")
-            : s.activeTab,
+        recentTabs: nextRecent,
+        activeTab: nextActive,
       };
     }),
   setViewMode: (id, mode) =>
@@ -61,7 +72,9 @@ export const useChromeStore = create<ChromeStore>((set, get) => ({
       // any mobile/tablet slide-in nav overlay so the chosen file is visible.
       const ancestors = ancestorsOf(id);
       const needsExpand = ancestors.some((a) => s.collapsedFolders.has(a));
-      const patch: Partial<ChromeStore> = { activeTab: id };
+      // Move id to the end of recentTabs (dedupe + move-to-end).
+      const nextRecent = [...s.recentTabs.filter((t) => t !== id), id];
+      const patch: Partial<ChromeStore> = { activeTab: id, recentTabs: nextRecent };
       if (s.navOpen) patch.navOpen = false;
       if (needsExpand) {
         const next = new Set(s.collapsedFolders);

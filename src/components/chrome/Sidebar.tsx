@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { useChromeStore } from "@/lib/store";
 import { buildFileTree, EXT_COLORS, isDir, type TreeNode } from "@/data/files";
+import { pathFor } from "@/lib/routes";
 
 const FILE_TREE = buildFileTree();
 
@@ -15,8 +17,6 @@ function FileRow({
   depth: number;
   parentPath?: string;
 }) {
-  const setActiveTab = useChromeStore((s) => s.setActiveTab);
-  const openTab = useChromeStore((s) => s.openTab);
   const toggleFolder = useChromeStore((s) => s.toggleFolder);
   const dir = isDir(node);
   const folderPath = dir ? (parentPath ? `${parentPath}/${node.name}` : node.name) : "";
@@ -54,13 +54,12 @@ function FileRow({
 
   const dotColor = EXT_COLORS[node.ext];
 
+  // <Link> drives navigation. The pathname change is picked up by RouteSync,
+  // which updates Zustand (openTab + setActiveTab) — see RouteSync.tsx.
   return (
-    <button
-      onClick={() => {
-        openTab(node.path);
-        setActiveTab(node.path);
-      }}
-      className={`flex items-center gap-1.5 py-1 pr-2 w-full font-code text-code cursor-pointer text-left transition-colors duration-(--duration-fast) ease-vscode hover:bg-side-hi ${
+    <Link
+      href={pathFor(node.path)}
+      className={`flex items-center gap-1.5 py-1 pr-2 w-full font-code text-code cursor-pointer text-left no-underline transition-colors duration-(--duration-fast) ease-vscode hover:bg-side-hi ${
         active ? "bg-side-hi text-fg-hi" : "bg-transparent text-fg"
       }`}
       style={{ paddingLeft: padLeft }}
@@ -69,7 +68,7 @@ function FileRow({
         ●
       </span>
       {node.name}
-    </button>
+    </Link>
   );
 }
 

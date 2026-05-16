@@ -11,12 +11,18 @@ import { StatusBar } from "./StatusBar";
 import { HintBar } from "./HintBar";
 import { BottomNav } from "./BottomNav";
 import { NavOverlay } from "./NavOverlay";
+import { RouteSync } from "./RouteSync";
 
 export function ChromeShell({ children }: { children: ReactNode }) {
   const activeTab = useChromeStore((s) => s.activeTab);
 
   return (
     <div className="flex flex-col h-full">
+      {/* Mirrors the current URL into Zustand (openTab + setActiveTab) on every
+          navigation. Renders no DOM — effect-only. Must mount inside ChromeShell
+          so it has access to the store. */}
+      <RouteSync />
+
       {/* TitleBar — tablet + desktop */}
       <div className="hidden md:block">
         <TitleBar />
