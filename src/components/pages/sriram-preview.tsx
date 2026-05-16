@@ -43,7 +43,7 @@ export function SriramPreview() {
         </div>
 
         {/* 4. Bio */}
-        <p className="font-ui text-body leading-[1.65] text-fg mt-6 max-w-[52ch]">{SRIRAM.bio}</p>
+        <p className="font-ui text-body leading-[1.65] text-fg mt-6 max-w-[64ch]">{SRIRAM.bio}</p>
 
         {/* 5. Meta list */}
         <div className="mt-6 flex flex-col gap-2 font-ui text-ui text-fg">
