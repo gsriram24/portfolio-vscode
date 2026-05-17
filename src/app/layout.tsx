@@ -5,11 +5,39 @@ import { ChromeShell } from "@/components/chrome/ChromeShell";
 import { ThemeInit } from "@/components/chrome/ThemeInit";
 import { Toaster } from "sonner";
 import { WelcomeHint, ThemeHint } from "@/components/overlays/HintToast";
+import { DEFAULT_TITLE, DEFAULT_DESCRIPTION, SITE_URL, SITE_NAME } from "@/lib/metadata";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Sriram Gopalakrishnan",
-  description: "Software Engineer",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: DEFAULT_TITLE,
+    template: `%s · ${SITE_NAME}`,
+  },
+  description: DEFAULT_DESCRIPTION,
+  keywords: [
+    "G Sriram", "gsriram24", "fullstack engineer", "software engineer",
+    "SDE-III", "GoHighLevel", "HighLevel", "Vue.js", "React", "NestJS",
+    "Node.js", "Nuxt.js", "TypeScript", "SaaS", "AI features",
+    "schema markup", "page builder", "ecommerce",
+  ],
+  authors: [{ name: "G Sriram", url: SITE_URL }],
+  creator: "G Sriram",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@gsriram24",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
 };
 
 export default function RootLayout({
