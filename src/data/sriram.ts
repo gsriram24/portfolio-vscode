@@ -12,7 +12,7 @@ export const SRIRAM = {
   author: "G. Sriram",
   since: 2021,
   role: "SDE-III",
-  open: "senior · staff IC opportunities",
+  open: "senior IC opportunities",
   company: "HighLevel",
   companySince: "Dec '23",
   promotedAt: "Jun '25",
