@@ -209,7 +209,7 @@ export function ContactPage() {
             <button
               type="submit"
               disabled={sending}
-              className="inline-flex items-center gap-1.5 font-ui text-ui font-semibold bg-func text-bg px-5.5 py-2.5 rounded-sm border-0 cursor-pointer tracking-[-0.01em] hover:opacity-90 transition-opacity duration-(--duration-fast) disabled:opacity-60"
+              className="inline-flex items-center gap-1.5 font-ui text-ui font-semibold bg-accent text-white px-5.5 py-2.5 rounded-sm border-0 cursor-pointer tracking-[-0.01em] hover:opacity-90 transition-opacity duration-(--duration-fast) disabled:opacity-60"
             >
               {sending ? "Sending…" : "Send message"}
               {!sending && <ArrowRight size={13} strokeWidth={2.25} aria-hidden />}

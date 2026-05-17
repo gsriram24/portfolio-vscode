@@ -98,7 +98,7 @@ export function SriramPreview() {
         <div className="mt-8 flex flex-wrap gap-2.5 items-center">
           <Link
             href="/experience/highlevel"
-            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-sm font-ui font-semibold text-[13.5px] tracking-[-0.01em] cursor-pointer border-0 bg-func text-bg no-underline transition-opacity duration-(--duration-fast) ease-vscode hover:opacity-85 active:opacity-70"
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-sm font-ui font-semibold text-[13.5px] tracking-[-0.01em] cursor-pointer border-0 bg-accent text-white no-underline transition-opacity duration-(--duration-fast) ease-vscode hover:opacity-85 active:opacity-70"
           >
             View more
             <ArrowRight size={14} strokeWidth={2.25} aria-hidden />

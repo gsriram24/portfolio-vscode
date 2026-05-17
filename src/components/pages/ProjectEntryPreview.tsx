@@ -100,7 +100,7 @@ export function ProjectEntryPreview({ project }: { project: ProjectEntry }) {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 font-ui text-ui font-semibold bg-func text-bg px-5 py-2 rounded-sm no-underline hover:opacity-90 transition-opacity duration-(--duration-fast) ease-vscode"
+                className="inline-flex items-center gap-1.5 font-ui text-ui font-semibold bg-accent text-white px-5 py-2 rounded-sm no-underline hover:opacity-90 transition-opacity duration-(--duration-fast) ease-vscode"
               >
                 {link.label}
                 <ArrowRight size={13} strokeWidth={2.25} aria-hidden />
