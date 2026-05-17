@@ -4,7 +4,7 @@ import { ibmPlexSans, cascadiaCode } from "@/lib/fonts";
 import { ChromeShell } from "@/components/chrome/ChromeShell";
 import { ThemeInit } from "@/components/chrome/ThemeInit";
 import { Toaster } from "sonner";
-import { WelcomeHint } from "@/components/overlays/HintToast";
+import { WelcomeHint, ThemeHint } from "@/components/overlays/HintToast";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -35,8 +35,9 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Toaster position="bottom-right" />
+        <Toaster position="bottom-right" expand offset={32} />
         <WelcomeHint />
+        <ThemeHint />
         <ThemeInit />
         <ChromeShell>{children}</ChromeShell>
       </body>

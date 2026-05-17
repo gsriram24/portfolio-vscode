@@ -12,6 +12,7 @@ import {
   Check,
   ExternalLink,
 } from "lucide-react";
+import { toast } from "sonner";
 import { CONTACT } from "@/data/contact";
 
 const LINKS = [
@@ -60,7 +61,6 @@ const LINKS = [
 export function ContactPage() {
   const [copied, setCopied] = useState(false);
   const [fields, setFields] = useState({ name: "", email: "", message: "" });
-  const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
 
   const handleCopy = async (text: string) => {
@@ -72,13 +72,32 @@ export function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(fields),
-    });
-    setSending(false);
-    if (res.ok) setSent(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fields),
+      });
+      setSending(false);
+      if (res.ok) {
+        setFields({ name: "", email: "", message: "" });
+        toast.success("Message sent", {
+          description: "I'll reply within 48h",
+          className: "!bg-bg-elev !border-border !border-l-[3px] !border-l-shipping !text-fg-hi !font-ui",
+        });
+      } else {
+        toast.error("Something went wrong", {
+          description: "Try again or email gsriram2403@gmail.com",
+          className: "!bg-bg-elev !border-border !border-l-[3px] !border-l-error !text-fg-hi !font-ui",
+        });
+      }
+    } catch {
+      setSending(false);
+      toast.error("Something went wrong", {
+        description: "Try again or email gsriram2403@gmail.com",
+        className: "!bg-bg-elev !border-border !border-l-[3px] !border-l-error !text-fg-hi !font-ui",
+      });
+    }
   };
 
   return (
@@ -189,11 +208,11 @@ export function ContactPage() {
           <div className="flex items-center gap-3 mt-1">
             <button
               type="submit"
-              disabled={sending || sent}
+              disabled={sending}
               className="inline-flex items-center gap-1.5 font-ui text-ui font-semibold bg-func text-bg px-5.5 py-2.5 rounded-sm border-0 cursor-pointer tracking-[-0.01em] hover:opacity-90 transition-opacity duration-(--duration-fast) disabled:opacity-60"
             >
-              {sent ? "Sent!" : sending ? "Sending…" : "Send message"}
-              {!sent && !sending && <ArrowRight size={13} strokeWidth={2.25} aria-hidden />}
+              {sending ? "Sending…" : "Send message"}
+              {!sending && <ArrowRight size={13} strokeWidth={2.25} aria-hidden />}
             </button>
             <span className="font-code text-meta text-dim">
               or <span className="text-accent">⌘↵</span> to submit

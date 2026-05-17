@@ -213,6 +213,7 @@
   --color-muted:     #CECECE;
   --color-activity:  #2C2C2C;
   --color-title-bar: #DDDDDD;
+  --color-title-text: #444444;
   --color-accent:    #0066B8;
   --color-keyword:   #0000FF;
   --color-string:    #A31515;
@@ -240,6 +241,7 @@
   --color-muted:     #D3CBB5;
   --color-activity:  #536870;
   --color-title-bar: #DDD6C1;
+  --color-title-text: #586E75;
   --color-accent:    #268BD2;
   --color-keyword:   #859900;
   --color-string:    #2AA198;
@@ -319,4 +321,25 @@
   [data-sonner-toaster] {
     bottom: 80px !important;
   }
+}
+
+/* global scrollbar — no gutter, thin, only visible on hover */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+*:hover {
+  scrollbar-color: var(--color-muted) transparent;
+}
+
+/* cmdk: group heading matches design QPRow category spec */
+[cmdk-group-heading] {
+  padding: 6px 16px 3px;
+  font-size: 10px;
+  color: var(--color-dim);
+  font-family: var(--font-cascadia-code), monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-top: 1px solid var(--color-border);
+  margin-top: 2px;
 }

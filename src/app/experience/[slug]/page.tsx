@@ -3,7 +3,7 @@ import { EXPERIENCE } from "@/data/experience";
 import { CompanyEntryPreview } from "@/components/pages/CompanyEntryPreview";
 import { CompanyEntrySource } from "@/components/pages/CompanyEntrySource";
 import { ViewSwitcher } from "@/components/pages/ViewSwitcher";
-import { ExperienceHint } from "@/components/pages/ExperienceHint";
+import { Hint } from "@/components/overlays/Hint";
 
 export function generateStaticParams() {
   return EXPERIENCE.map((c) => ({ slug: c.slug }));
@@ -26,7 +26,7 @@ export default async function ExperienceSlugPage({
   if (!company) notFound();
   return (
     <>
-      <ExperienceHint />
+      <Hint id="hint-experience" text="Browse work products in the sidebar — each file is a project I shipped here." />
       <ViewSwitcher
         source={<CompanyEntrySource company={company} />}
         preview={<CompanyEntryPreview company={company} />}

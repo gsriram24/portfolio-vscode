@@ -76,8 +76,14 @@ export function CommandPalette() {
         aria-modal="true"
         aria-label="Command Palette"
         onClick={(e) => e.stopPropagation()}
-        filter={(value, search) => {
+        filter={(value, search, keywords) => {
           if (!search) return 1;
+          // Commands carry keywords — match by simple string inclusion
+          if (keywords?.length) {
+            const q = search.toLowerCase();
+            return keywords.some((k) => k.toLowerCase().includes(q)) ? 1 : 0;
+          }
+          // File/page items — match via Fuse
           const results = fuse.search(search);
           const match = results.find((r) => r.item.path === value || r.item.name === value);
           return match ? 1 - (match.score ?? 0) : 0;
@@ -133,16 +139,18 @@ export function CommandPalette() {
             <Command.Group heading="Commands">
               <Command.Item
                 value="change-color-theme"
+                keywords={["change color theme", "theme", "appearance", "color", "dark", "light"]}
                 onSelect={() => setOverlay("theme")}
                 className="flex items-center gap-2.5 px-4 py-[7px] cursor-pointer border-l-2 border-l-transparent data-[selected=true]:bg-side-hi data-[selected=true]:border-l-accent"
               >
                 <CommandIcon size={12} className="shrink-0 text-keyword" />
                 <span className="flex-1 font-ui text-ui text-fg">Change Color Theme</span>
-                <span className="font-code text-meta text-dim">Ctrl T</span>
+                <span className="font-code text-meta text-dim">Ctrl ⇧ Y</span>
               </Command.Item>
 
               <Command.Item
                 value="search-files"
+                keywords={["search files", "search", "go to file", "navigate", "open"]}
                 onSelect={() => setOverlay("palette-search")}
                 className="flex items-center gap-2.5 px-4 py-[7px] cursor-pointer border-l-2 border-l-transparent data-[selected=true]:bg-side-hi data-[selected=true]:border-l-accent"
               >
@@ -153,6 +161,7 @@ export function CommandPalette() {
 
               <Command.Item
                 value="copy-email"
+                keywords={["copy email", "email", "contact", "clipboard", "mail"]}
                 onSelect={copyEmail}
                 className="flex items-center gap-2.5 px-4 py-[7px] cursor-pointer border-l-2 border-l-transparent data-[selected=true]:bg-side-hi data-[selected=true]:border-l-accent"
               >
@@ -164,6 +173,7 @@ export function CommandPalette() {
 
               <Command.Item
                 value="view-resume"
+                keywords={["view resume", "resume", "cv", "download"]}
                 onSelect={openResume}
                 className="flex items-center gap-2.5 px-4 py-[7px] cursor-pointer border-l-2 border-l-transparent data-[selected=true]:bg-side-hi data-[selected=true]:border-l-accent"
               >
@@ -173,6 +183,7 @@ export function CommandPalette() {
 
               <Command.Item
                 value="keyboard-shortcuts"
+                keywords={["keyboard shortcuts", "shortcuts", "keybindings", "keys", "hotkeys"]}
                 onSelect={() => setOverlay("shortcuts")}
                 className="flex items-center gap-2.5 px-4 py-[7px] cursor-pointer border-l-2 border-l-transparent data-[selected=true]:bg-side-hi data-[selected=true]:border-l-accent"
               >
@@ -205,7 +216,14 @@ export function CommandPalette() {
 
         {/* Footer */}
         <div className="px-4 py-[7px] border-t border-border flex gap-4 font-code text-meta text-dim">
-          <span>Tab accept</span>
+          <span>
+            <kbd className="px-1 py-px bg-muted border border-[#555] border-b-2 rounded-xs font-code text-[9px] text-dim">Tab</kbd>
+            {" "}accept
+          </span>
+          <span>
+            <kbd className="px-1 py-px bg-muted border border-[#555] border-b-2 rounded-xs font-code text-[9px] text-dim">→</kbd>
+            {" "}expand group
+          </span>
           <span className="ml-auto">{SEARCH_INDEX.length} results</span>
         </div>
       </Command>

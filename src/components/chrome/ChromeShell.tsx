@@ -14,6 +14,7 @@ import { BottomNav } from "./BottomNav";
 import { NavOverlay } from "./NavOverlay";
 import { RouteSync } from "./RouteSync";
 import { OverlayManager } from "@/components/overlays/OverlayManager";
+import { MobileSheetManager } from "@/components/overlays/MobileSheetManager";
 
 export function ChromeShell({ children }: { children: ReactNode }) {
   const activeTab = useChromeStore((s) => s.activeTab);
@@ -75,7 +76,7 @@ export function ChromeShell({ children }: { children: ReactNode }) {
       <NavOverlay />
 
       <OverlayManager />
-      {/* MobileSheetManager added in Task 13 */}
+      <MobileSheetManager />
     </div>
   );
 }

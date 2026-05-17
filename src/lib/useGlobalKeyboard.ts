@@ -10,6 +10,8 @@ export function useGlobalKeyboard() {
   const mobileSheet = useChromeStore((s) => s.mobileSheet);
 
   useEffect(() => {
+    const isMac = /Mac/i.test(navigator.platform);
+
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") {
         if (overlay !== null || mobileSheet !== null) {
@@ -27,19 +29,21 @@ export function useGlobalKeyboard() {
         target.isContentEditable
       ) return;
 
-      if (e.ctrlKey && e.shiftKey && e.key === "P") {
+      const mod = isMac ? e.metaKey : e.ctrlKey;
+
+      if (mod && e.shiftKey && e.key === "P") {
         e.preventDefault();
         setOverlay("palette-commands");
         return;
       }
 
-      if (e.ctrlKey && !e.shiftKey && e.key === "p") {
+      if (mod && !e.shiftKey && e.key === "p") {
         e.preventDefault();
         setOverlay("palette-search");
         return;
       }
 
-      if (e.ctrlKey && e.key === "t") {
+      if (mod && e.shiftKey && e.key === "Y") {
         e.preventDefault();
         setOverlay("theme");
         return;

@@ -156,7 +156,7 @@ export function TabBar() {
         {/* Scrollable tabs — native scrollbar fully hidden */}
         <div
           ref={scrollRef}
-          className="flex h-full overflow-x-scroll scrollbar-none items-stretch"
+          className="flex h-full overflow-x-scroll scrollbar-none! items-stretch"
         >
           {tabs.map((id) => (
             <TabItem key={id} id={id} active={id === activeTab} onClose={handleClose} />

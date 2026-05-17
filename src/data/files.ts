@@ -23,10 +23,10 @@ export function isDir(node: TreeNode): node is DirNode {
 }
 
 export const EXT_COLORS: Record<FileExt, string> = {
-  tsx: "#DCDCAA",
-  ts: "#4EC9B0",
-  md: "#007ACC",
-  json: "#CE9178",
+  tsx: "var(--color-func)",
+  ts:  "var(--color-type)",
+  md:  "var(--color-accent)",
+  json:"var(--color-string)",
 };
 
 // Sidebar tree, derived from PROJECTS + EXPERIENCE + TALKS.

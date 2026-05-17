@@ -3,33 +3,38 @@
 import { X } from "lucide-react";
 import { useChromeStore } from "@/lib/store";
 
-const SECTIONS = [
-  {
-    label: "Navigate",
-    rows: [
-      { keys: ["Ctrl", "⇧", "P"], desc: "Open command palette" },
-      { keys: ["Ctrl", "P"], desc: "Search / go to file" },
-      { keys: ["Esc"], desc: "Dismiss overlay / close panel" },
-    ],
-  },
-  {
-    label: "View",
-    rows: [
-      { keys: ["Ctrl", "T"], desc: "Change color theme" },
-    ],
-  },
-  {
-    label: "In any list",
-    rows: [
-      { keys: ["↑ ↓"], desc: "Navigate items" },
-      { keys: ["↵"], desc: "Select / open item" },
-    ],
-  },
-];
+const isMac = typeof navigator !== "undefined" && /Mac/i.test(navigator.platform);
+const mod = isMac ? "⌘" : "Ctrl";
+
+function sections() {
+  return [
+    {
+      label: "Navigate",
+      rows: [
+        { keys: [mod, "⇧", "P"], desc: "Open command palette" },
+        { keys: [mod, "P"], desc: "Search / go to file" },
+        { keys: ["Esc"], desc: "Dismiss overlay / close panel" },
+      ],
+    },
+    {
+      label: "View",
+      rows: [
+        { keys: [mod, "⇧", "Y"], desc: "Change color theme" },
+      ],
+    },
+    {
+      label: "In any list",
+      rows: [
+        { keys: ["↑ ↓"], desc: "Navigate items" },
+        { keys: ["↵"], desc: "Select / open item" },
+      ],
+    },
+  ];
+}
 
 function Kbd({ k }: { k: string }) {
   return (
-    <kbd className="inline-block px-1.5 py-[2px] bg-muted border border-[#555] border-b-2 rounded-[3px] font-code text-meta text-dim whitespace-nowrap">
+    <kbd className="inline-block px-1.5 py-px bg-muted border border-[#555] border-b-2 rounded-sm font-code text-meta text-fg whitespace-nowrap">
       {k}
     </kbd>
   );
@@ -41,7 +46,7 @@ export function KeyboardShortcuts() {
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center pt-11 bg-[rgba(0,0,0,0.44)]">
       <div
-        className="w-[700px] max-h-[80vh] bg-bg-elev border border-border rounded-md shadow-[0_16px_56px_rgba(0,0,0,0.72)] flex flex-col overflow-hidden"
+        className="w-175 max-h-[80vh] bg-bg-elev border border-border rounded-md shadow-[0_16px_56px_rgba(0,0,0,0.72)] flex flex-col overflow-hidden"
         role="dialog"
         aria-modal="true"
         aria-label="Keyboard Shortcuts"
@@ -51,7 +56,6 @@ export function KeyboardShortcuts() {
           <span className="font-code text-meta text-accent uppercase tracking-[0.08em]">
             Keyboard Shortcuts
           </span>
-          <span className="font-code text-meta text-dim ml-auto mr-3">⌘K ⌘S</span>
           <button
             onClick={() => setOverlay(null)}
             aria-label="Close"
@@ -63,7 +67,7 @@ export function KeyboardShortcuts() {
 
         {/* Content */}
         <div className="flex-1 overflow-auto px-6 pb-5">
-          {SECTIONS.map((section) => (
+          {sections().map((section) => (
             <div key={section.label}>
               <div className="font-code text-meta text-accent uppercase tracking-[0.08em] pt-3.5 pb-1 border-b border-border">
                 {section.label}
@@ -73,7 +77,7 @@ export function KeyboardShortcuts() {
                   key={row.desc}
                   className="flex items-center gap-4 py-2 border-b border-border"
                 >
-                  <div className="flex gap-1 min-w-[170px] shrink-0">
+                  <div className="flex gap-1 min-w-42.5 shrink-0">
                     {row.keys.map((k) => (
                       <Kbd key={k} k={k} />
                     ))}
@@ -83,11 +87,6 @@ export function KeyboardShortcuts() {
               ))}
             </div>
           ))}
-        </div>
-
-        {/* Footer */}
-        <div className="px-6 py-2 border-t border-border font-code text-meta text-dim shrink-0">
-          macOS shown · Ctrl replaces ⌘ on Windows/Linux
         </div>
       </div>
     </div>

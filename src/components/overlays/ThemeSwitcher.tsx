@@ -61,13 +61,13 @@ export function ThemeSwitcher() {
               value={id}
               onSelect={() => handleSelect(id)}
               onMouseEnter={() => handleHighlight(id)}
-              className="flex items-center gap-3 px-4 py-2.5 cursor-pointer border-b border-border border-l-2 border-l-transparent data-[selected=true]:bg-side-hi data-[selected=true]:border-l-accent"
+              className="group flex items-center gap-3 px-4 py-2.5 cursor-pointer not-last:border-b border-border border-l-2 border-l-transparent data-[selected=true]:bg-side-hi data-[selected=true]:border-l-accent"
             >
               <span className={`w-4 font-code text-meta text-center ${activeTheme === id ? "text-accent" : "text-transparent"}`}>
                 ✓
               </span>
 
-              <span className="flex-1 font-ui text-ui text-fg">{THEME_LABELS[id]}</span>
+              <span className="flex-1 font-ui text-ui text-fg group-data-[selected=true]:text-fg-hi">{THEME_LABELS[id]}</span>
 
               <div className="flex gap-0.5 shrink-0">
                 {THEME_SWATCHES[id].map((color, i) => (
@@ -79,7 +79,7 @@ export function ThemeSwitcher() {
                 ))}
               </div>
 
-              <span className="font-code text-meta text-dim bg-muted px-1.5 py-[2px] rounded-[2px] shrink-0 min-w-[34px] text-center">
+              <span className="font-code text-meta text-dim bg-muted px-1.75 py-px rounded-xs shrink-0 min-w-8.5 text-center">
                 {THEME_CATEGORIES[id]}
               </span>
             </Command.Item>
