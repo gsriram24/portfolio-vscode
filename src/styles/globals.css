@@ -305,6 +305,7 @@
   }
 }
 
+
 @media (prefers-reduced-motion: reduce) {
   :root {
     --duration-fast: 0ms;
