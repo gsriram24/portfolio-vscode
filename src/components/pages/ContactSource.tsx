@@ -50,13 +50,22 @@ export function ContactSource() {
         <Fn>sendMessage</Fn>
         <P>{" = "}</P>
         <K>async </K>
-        <P>{"({ "}</P>
-        <A>name</A>
-        <P>{", "}</P>
-        <A>email</A>
-        <P>{", "}</P>
-        <A>message</A>
-        <P>{" }) => {"}</P>
+        <P>{"({"}</P>
+      </>
+    ),
+  });
+  lines.push({ indent: 1, content: <><V>name</V><P>: </P><T>string</T><P>,</P></> });
+  lines.push({ indent: 1, content: <><V>email</V><P>: </P><T>string</T><P>,</P></> });
+  lines.push({ indent: 1, content: <><V>message</V><P>: </P><T>string</T><P>,</P></> });
+  lines.push({
+    content: (
+      <>
+        <P>{"}) => "}</P>
+        <T>Promise</T>
+        <P>{"<"}</P>
+        <T>void</T>
+        <P>{">"}</P>
+        <P>{" => {"}</P>
       </>
     ),
   });

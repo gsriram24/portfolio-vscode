@@ -30,13 +30,15 @@ export function StackSource() {
           <P>: </P>
           <T>Tech</T>
           <P>{"[] = ["}</P>
-          {cat.note && <C>{`  // ${cat.note}`}</C>}
         </>
       ),
     });
     cat.items.forEach((item) => {
       lines.push({ indent: 1, content: <><S>&quot;{item}&quot;</S><P>,</P></> });
     });
+    if (cat.note) {
+      lines.push({ indent: 1, content: <C>{`// ${cat.note}`}</C> });
+    }
     lines.push({ content: <P>{"]"}</P> });
     if (i < STACK.length - 1) lines.push({ content: " " });
   });

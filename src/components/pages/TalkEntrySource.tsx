@@ -51,7 +51,7 @@ export function TalkEntrySource({ talk: t }: { talk: TalkEntry }) {
   }
 
   if (t.photo) {
-    lines.push({ indent: 1, content: <><A>photo</A><P>:     </P><S>&quot;{t.photo}&quot;</S><P>,</P><C>  // ← optional</C></> });
+    lines.push({ indent: 1, content: <><A>photo</A><P>:     </P><S>&quot;{t.photo}&quot;</S><P>,</P></> });
   }
   if (meetup) {
     lines.push({ indent: 1, content: <><A>meetup</A><P>:    </P><S>&quot;{meetup.href}&quot;</S><P>,</P></> });

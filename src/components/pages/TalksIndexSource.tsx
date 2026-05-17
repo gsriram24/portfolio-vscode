@@ -1,6 +1,6 @@
 import { CodeBlock, A, C, K, P, S, T, V, type CodeBlockLine } from "@/components/code";
 import { TALKS } from "@/data/talks";
-import { isUpcoming } from "@/lib/talks";
+import { isUpcoming, formatTalkDate } from "@/lib/talks";
 import { timeAgo } from "@/lib/blame";
 
 export function TalksIndexSource() {
@@ -22,7 +22,7 @@ export function TalksIndexSource() {
   });
   lines.push({ content: " " });
   lines.push({
-    content: <C>{`// talks/index.ts · ${TALKS.length} talks · ${upcomingCount} upcoming`}</C>,
+    content: <C>{`// talks/index.ts · ${TALKS.length} talks · ${upcomingCount} upcoming · conference + meetup`}</C>,
   });
   lines.push({ content: " " });
 
@@ -72,6 +72,17 @@ export function TalksIndexSource() {
           <A>event</A>
           <P>: </P>
           <S>&quot;{t.event}&quot;</S>
+          <P>,</P>
+        </>
+      ),
+    });
+    lines.push({
+      indent: 2,
+      content: (
+        <>
+          <A>date</A>
+          <P>: </P>
+          <S>&quot;{formatTalkDate(t)}&quot;</S>
           <P>,</P>
         </>
       ),

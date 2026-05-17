@@ -31,6 +31,19 @@ export function ProjectsIndexSource() {
       </>
     ),
   });
+  lines.push({
+    content: (
+      <>
+        <K>import type </K>
+        <P>{"{ "}</P>
+        <T>Project</T>
+        <P>{" }"}</P>
+        <K> from </K>
+        <S>&quot;./types&quot;</S>
+        <P>;</P>
+      </>
+    ),
+  });
   lines.push({ content: " " });
   lines.push({ content: <C>{`// projects/index.tsx · ${count} projects`}</C> });
   lines.push({ content: " " });

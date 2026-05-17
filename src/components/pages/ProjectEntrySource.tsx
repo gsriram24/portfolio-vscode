@@ -1,5 +1,6 @@
-import { CodeBlock, A, C, Fn, K, P, S, T, V, type CodeBlockLine } from "@/components/code";
+import { CodeBlock, A, C, Fn, J, K, P, S, T, V, type CodeBlockLine } from "@/components/code";
 import type { ProjectEntry } from "@/data/types";
+import { EXPERIENCE } from "@/data/experience";
 
 const TYPE_LABEL: Record<string, string> = {
   "work-product": "Work",
@@ -15,6 +16,22 @@ function toCamelCase(slug: string) {
 export function ProjectEntrySource({ project: p }: { project: ProjectEntry }) {
   const lines: CodeBlockLine[] = [];
   const fnName = toCamelCase(p.slug);
+  const isWorkProduct = p.type === "work-product";
+  const company = isWorkProduct ? EXPERIENCE.find((e) => e.slug === p.company) : undefined;
+  const filePath = isWorkProduct
+    ? `experience/${p.company}/${p.slug}.tsx`
+    : `projects/${p.slug}.tsx`;
+
+  // ── JSDoc ─────────────────────────────────────────────────────────────
+  lines.push({ content: <J>{"/**"}</J> });
+  lines.push({ content: <><J>{" * "}</J><K>@file</K><J>{`    ${filePath}`}</J></> });
+  if (company) {
+    lines.push({ content: <><J>{" * "}</J><K>@client</K><J>{`  ${company.companyName}`}</J></> });
+  }
+  if (p.tags?.length) {
+    lines.push({ content: <><J>{" * "}</J><K>@scope</K><J>{`   ${p.tags.join(" · ")}`}</J></> });
+  }
+  lines.push({ content: <J>{" */"}</J> });
 
   lines.push({
     content: (
@@ -22,6 +39,8 @@ export function ProjectEntrySource({ project: p }: { project: ProjectEntry }) {
         <K>import type </K>
         <P>{"{ "}</P>
         <T>ProjectEntry</T>
+        <P>{", "}</P>
+        <T>ProjectLink</T>
         <P>{" }"}</P>
         <K> from </K>
         <S>&quot;@portfolio/types&quot;</S>
@@ -79,6 +98,24 @@ export function ProjectEntrySource({ project: p }: { project: ProjectEntry }) {
     lines.push({ content: " " });
   }
 
+  if (p.images?.length) {
+    lines.push({ indent: 1, content: <><A>images</A><P>: [</P></> });
+    p.images.forEach((img) => {
+      lines.push({ indent: 2, content: <><S>&quot;{img}&quot;</S><P>,</P></> });
+    });
+    lines.push({ indent: 1, content: <P>{"],"}</P> });
+    lines.push({ content: " " });
+  }
+
+  if (p.testimonial) {
+    lines.push({ indent: 1, content: <><A>testimonial</A><P>: {"{"}</P></> });
+    lines.push({ indent: 2, wrap: true, content: <><A>quote</A><P>:  </P><S>&quot;{p.testimonial.quote}&quot;</S><P>,</P></> });
+    lines.push({ indent: 2, content: <><A>author</A><P>: </P><S>&quot;{p.testimonial.author}&quot;</S><P>,</P></> });
+    lines.push({ indent: 2, content: <><A>role</A><P>:   </P><S>&quot;{p.testimonial.role}&quot;</S><P>,</P></> });
+    lines.push({ indent: 1, content: <P>{"  },"}</P> });
+    lines.push({ content: " " });
+  }
+
   if (p.stack?.length) {
     lines.push({ indent: 1, content: <><A>stack</A><P>: [</P></> });
     p.stack.forEach((s) => {
@@ -103,7 +140,7 @@ export function ProjectEntrySource({ project: p }: { project: ProjectEntry }) {
     lines.push({ indent: 1, content: <P>{"],"}</P> });
   }
 
-  lines.push({ content: <P>{"}"}</P> });
+  lines.push({ content: <><P>{"}"}</P><P>{";"}</P></> });
   lines.push({ content: " " });
 
   lines.push({
