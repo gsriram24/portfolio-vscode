@@ -1,10 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ChevronDown, ChevronRight, Search as SearchIcon } from "lucide-react";
 import { useChromeStore } from "@/lib/store";
-import { buildFileTree, EXT_COLORS, isDir, type TreeNode } from "@/data/files";
+import { buildFileTree, EXT_COLORS, isDir, type TreeNode, type FileExt } from "@/data/files";
 import { pathFor } from "@/lib/routes";
+import { fuse } from "@/lib/search";
+import { SEARCH_INDEX, type SearchEntry } from "@/data/search-index";
+import { THEME_LABELS } from "@/lib/theme";
 
 const FILE_TREE = buildFileTree();
 
@@ -91,18 +96,87 @@ export function ExplorerPanel() {
 }
 
 function SearchPanel() {
+  const [query, setQuery] = useState("");
+  const router = useRouter();
+  const setActiveTab = useChromeStore((s) => s.setActiveTab);
+  const openTab = useChromeStore((s) => s.openTab);
+  const setActivePanel = useChromeStore((s) => s.setActivePanel);
+
+  const results: SearchEntry[] = query
+    ? fuse.search(query).map((r) => r.item)
+    : SEARCH_INDEX;
+
+  function navigateTo(path: string) {
+    openTab(path);
+    setActiveTab(path);
+    router.push(pathFor(path));
+    setActivePanel(null);
+  }
+
   return (
-    <div className="p-2">
-      <input
-        placeholder="Search"
-        className="w-full px-2 py-1 font-code text-code bg-bg border border-border text-fg outline-none"
-      />
+    <div className="flex flex-col h-full">
+      <div className="font-code text-meta text-dim uppercase font-semibold pt-2.5 px-4 pb-1.5 tracking-[0.06em]">
+        Search
+      </div>
+
+      <div className="mx-2 mb-2 flex items-center gap-2 px-2 py-1.5 bg-bg border border-border rounded-[3px] focus-within:border-accent transition-colors duration-(--duration-fast)">
+        <SearchIcon size={12} className="text-dim shrink-0" />
+        <input
+          autoFocus
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search files…"
+          className="flex-1 bg-transparent font-code text-code text-fg outline-none placeholder:text-dim min-w-0"
+        />
+      </div>
+
+      <div className="px-3 pb-1 font-code text-meta text-dim">
+        {results.length} result{results.length !== 1 ? "s" : ""}
+      </div>
+
+      <div className="flex-1 overflow-y-auto">
+        {results.map((entry) => {
+          const ext = (entry.path.split(".").pop() ?? "ts") as FileExt;
+          const dotColor = EXT_COLORS[ext] ?? "var(--color-dim)";
+          return (
+            <button
+              key={entry.path}
+              onClick={() => navigateTo(entry.path)}
+              className="w-full text-left px-3 py-1.5 hover:bg-side-hi cursor-pointer bg-transparent border-0 flex flex-col gap-0.5"
+            >
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 shrink-0 font-code text-meta text-center" style={{ color: dotColor }}>●</span>
+                <span className="font-code text-code text-fg-hi truncate">{entry.name}</span>
+              </div>
+              <div className="font-code text-meta text-dim pl-4.5 truncate">{entry.path}</div>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
 
 function SettingsPanel() {
-  return <div className="px-4 py-3 font-ui text-code text-dim">Color Theme</div>;
+  const setOverlay = useChromeStore((s) => s.setOverlay);
+  const activeTheme = useChromeStore((s) => s.activeTheme);
+
+  return (
+    <div className="flex flex-col">
+      <div className="font-code text-meta text-dim uppercase font-semibold pt-2.5 px-4 pb-1.5 tracking-[0.06em]">
+        Settings
+      </div>
+      <div className="px-4 py-3 border-b border-border">
+        <div className="font-ui text-code font-semibold text-fg-hi mb-1">Color theme</div>
+        <button
+          onClick={() => setOverlay("theme")}
+          className="w-full text-left px-2 py-1.5 bg-side-hi border border-accent rounded-[3px] font-code text-code text-fg-hi cursor-pointer hover:opacity-90 transition-opacity duration-(--duration-fast)"
+        >
+          {THEME_LABELS[activeTheme]}
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export function Sidebar() {
