@@ -1,6 +1,9 @@
-import { TALKS } from "@/data/talks";
-import { isUpcoming } from "@/lib/talks";
+import { notFound } from "next/navigation";
+import { ViewSwitcher } from "@/components/pages/ViewSwitcher";
+import { TalkEntryPreview } from "@/components/pages/TalkEntryPreview";
 import { PlaceholderPage } from "@/components/pages/PlaceholderPage";
+import { TALKS } from "@/data/talks";
+import { findTalk, isUpcoming } from "@/lib/talks";
 
 export function generateStaticParams() {
   return TALKS.filter((t) => !isUpcoming(t)).map((t) => ({ slug: t.slug }));
@@ -10,7 +13,8 @@ export const dynamicParams = false;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  return { title: `${slug}.tsx — gsriram.dev` };
+  const talk = findTalk(slug);
+  return { title: `${talk?.event ?? slug} — gsriram.dev` };
 }
 
 export default async function TalkPage({
@@ -19,5 +23,13 @@ export default async function TalkPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  return <PlaceholderPage tabId={`talks/${slug}.tsx`} />;
+  const talk = findTalk(slug);
+  if (!talk || isUpcoming(talk)) notFound();
+
+  return (
+    <ViewSwitcher
+      source={<PlaceholderPage tabId={`talks/${slug}.tsx`} />}
+      preview={<TalkEntryPreview talk={talk} />}
+    />
+  );
 }

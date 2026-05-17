@@ -8,7 +8,7 @@ import type { TalkEntry } from "./types";
 // Sources:
 //   - Meetup pages (titles, exact dates, venues)
 //   - Talk submissions (titles, abstracts, key takeaways) — provided by user
-//   - Slide decks for past talks (linked via links[])
+//   - Slide decks for past talks (slidesUrl field — RevealJS or Google Slides)
 //
 // Status (upcoming vs past) derives from `date` at render time. Upcoming
 // talks intentionally do NOT generate a detail page — listing card covers
@@ -39,12 +39,9 @@ export const TALKS: TalkEntry[] = [
     photo: "/images/talks/reactplay-april-2026.jpg",
     description:
       "How frontend developers can make their sites SEO-ready by shipping structured data with JSON-LD. We walked through what Google actually sees on your page, why schema is the name tag that introduces your content to crawlers and AI search engines, the highest-ROI schema types (Organization, FAQPage, and the handful that cover 90% of real use cases), common bugs (SPAs, schema drift, duplicate schemas), a validation workflow, and five concrete next steps you can ship the same night.",
+    slidesUrl: "https://schema-markup-talk.web.app/",
     links: [
-      {
-        label: "Meetup ↗",
-        href: "https://www.meetup.com/reactplay-bengaluru/events/314034551/",
-      },
-      { label: "Slides ↗", href: "https://schema-markup-talk.web.app/" },
+      { label: "Meetup ↗", href: "https://www.meetup.com/reactplay-bengaluru/events/314034551/" },
     ],
   },
 
@@ -58,16 +55,10 @@ export const TALKS: TalkEntry[] = [
     photo: "/images/talks/react-bangalore-84.jpg",
     description:
       "A practical introduction to data fetching in React. We started with the obvious \"just use useEffect\" approach, then walked through the pile of complexity it actually buys: race conditions, loading and error states, empty states, manual caching. Then we introduced React Query, which collapses most of that into a single hook — and surveyed its key features: automatic caching, query invalidation, retries, background refetching, pagination + infinite scroll, optimistic updates, polling, prefetching, window-focus refetching, and dependent queries. Live demos compared a manual fetcher to the React Query equivalent, side by side.",
+    slidesUrl: "https://react-query-talk.web.app/",
+    recordingUrl: "https://www.youtube.com/live/KrkNC9kdJXk?t=4913",
     links: [
-      {
-        label: "Meetup ↗",
-        href: "https://www.meetup.com/reactjs-bangalore/events/304826571/",
-      },
-      { label: "Slides ↗", href: "https://react-query-talk.web.app/" },
-      {
-        label: "Recording ↗",
-        href: "https://www.youtube.com/live/KrkNC9kdJXk?t=4913",
-      },
+      { label: "Meetup ↗", href: "https://www.meetup.com/reactjs-bangalore/events/304826571/" },
     ],
   },
 
@@ -81,15 +72,9 @@ export const TALKS: TalkEntry[] = [
     photo: "/images/talks/react-bangalore-78.jpg",
     description:
       "A walkthrough of React's new compiler and how it changes the way components get rendered. We compared component output with and without the compiler across patterns from tiny renders to memoized lists — exploring opt-in vs opt-out reactivity, what the compiler optimises automatically, and what changes (or doesn't) for the code you already write.",
+    slidesUrl: "https://docs.google.com/presentation/d/1B2Ac9VONZx1xSHOHkeBu6J4EBug5dQLnyCXMK5id5gc/edit?usp=sharing",
     links: [
-      {
-        label: "Meetup ↗",
-        href: "https://www.meetup.com/reactjs-bangalore/events/300882807/",
-      },
-      {
-        label: "Slides ↗",
-        href: "https://docs.google.com/presentation/d/1B2Ac9VONZx1xSHOHkeBu6J4EBug5dQLnyCXMK5id5gc/edit?usp=sharing",
-      },
+      { label: "Meetup ↗", href: "https://www.meetup.com/reactjs-bangalore/events/300882807/" },
     ],
   },
 ];

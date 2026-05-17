@@ -91,7 +91,9 @@ export interface TalkEntry {
   color: string;               // CSS var ref — drives accent bar + slug dot + badge per design
   description?: string;
   photo?: string;
-  links?: TalkLink[];          // meetup page, slides URL, recording URL, etc. — all rendered as a flat link list (no embeds)
+  slidesUrl?: string;          // RevealJS / Google Slides / any URL — embedded as iframe on detail page
+  recordingUrl?: string;       // YouTube URL — embedded as iframe on detail page
+  links?: TalkLink[];          // meetup and any other external links
 }
 
 export interface StackCategory {
