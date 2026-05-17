@@ -310,6 +310,12 @@ export const PROJECTS: ProjectEntry[] = [
       { value: "130+", label: "MSI models" },
     ],
     stack: ["Python 3.8+", "GTK3", "PyGObject", "Cairo"],
+    images: [
+      "/images/projects/frost-center/dashboard.png",
+      "/images/projects/frost-center/fan-control.png",
+      "/images/projects/frost-center/battery.png",
+      "/images/projects/frost-center/settings.png",
+    ],
     links: [
       {
         label: "View on GitHub",

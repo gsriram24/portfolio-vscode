@@ -23,7 +23,7 @@ export function CompanyEntryPreview({ company }: { company: Company }) {
       {/* Header */}
       <header className="flex flex-col gap-2.5">
         <div className="font-code text-meta text-dim tracking-[0.06em]">{company.duration}</div>
-        <h1 className="font-ui text-h1 font-bold text-fg-hi m-0 tracking-tight leading-[1.05]">
+        <h1 className="font-ui text-h1 font-bold text-fg-hi m-0 tracking-tight leading-[1.1]">
           {company.companyName}
         </h1>
         <p className="font-ui text-body leading-[1.7] text-fg m-0 max-w-[96ch] mt-3">
@@ -147,7 +147,7 @@ function ProjectInlineBlock({
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="font-code text-meta text-accent uppercase tracking-[0.08em] mb-3">
+    <div className="font-code text-meta text-accent uppercase tracking-[0.08em] mb-2.5">
       {children}
     </div>
   );
@@ -166,9 +166,7 @@ function RoleTimeline({ roles }: { roles: Company["roles"] }) {
             <div className="relative w-2 shrink-0">
               <span
                 className={`absolute top-1.5 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full border ${
-                  i === 0
-                    ? "bg-accent border-accent"
-                    : "bg-bg border-dim"
+                  i === 0 ? "bg-accent border-accent" : "bg-bg border-dim"
                 }`}
               />
               {!isLast && (
@@ -193,11 +191,7 @@ function RoleTimeline({ roles }: { roles: Company["roles"] }) {
               >
                 {role.title}
               </div>
-              <div
-                className={`font-code text-meta text-dim ${
-                  role.description ? "mb-2" : ""
-                }`}
-              >
+              <div className={`font-code text-meta text-dim ${role.description ? "mb-2" : ""}`}>
                 {role.duration}
               </div>
               {role.description && (

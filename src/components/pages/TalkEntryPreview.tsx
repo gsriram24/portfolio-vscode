@@ -45,12 +45,12 @@ export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {
           </div>
 
           {/* Title */}
-          <h1 className="font-ui text-h2 md:text-h1 font-bold text-fg-hi tracking-tight leading-[1.2] m-0">
+          <h1 className="font-ui text-h1 font-bold text-fg-hi m-0 tracking-tight leading-[1.1]">
             {t.title}
           </h1>
 
           {/* Meta row */}
-          <div className="flex gap-4 flex-wrap font-code text-meta text-dim">
+          <div className="flex gap-4 flex-wrap font-code text-code text-dim">
             <span>📅 {date}</span>
             <span>📍 {t.location}</span>
           </div>
@@ -63,7 +63,7 @@ export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {
                   href={meetup.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-code text-meta text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast)"
+                  className="inline-flex items-center gap-1 font-code text-code text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast)"
                 >
                   <ExternalLink size={10} strokeWidth={2} aria-hidden /> meetup event
                 </a>
@@ -73,7 +73,7 @@ export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {
                   href={t.slidesUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-code text-meta text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast)"
+                  className="inline-flex items-center gap-1 font-code text-code text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast)"
                 >
                   <ExternalLink size={10} strokeWidth={2} aria-hidden /> slides
                 </a>
@@ -83,7 +83,7 @@ export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {
                   href={t.recordingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-code text-meta text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast)"
+                  className="inline-flex items-center gap-1 font-code text-code text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast)"
                 >
                   <Play size={10} strokeWidth={2} fill="currentColor" aria-hidden /> recording
                 </a>
@@ -109,19 +109,17 @@ export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {
         {/* Description */}
         {t.description && (
           <div className="flex flex-col gap-2">
-            <div className="font-code text-meta text-accent uppercase tracking-[0.06em]">
+            <div className="font-code text-meta text-accent uppercase tracking-[0.08em] mb-2.5">
               About this talk
             </div>
-            <p className="font-ui text-body md:text-lead text-fg leading-[1.7] m-0">
-              {t.description}
-            </p>
+            <p className="font-ui text-body leading-[1.7] text-fg m-0">{t.description}</p>
           </div>
         )}
 
         {/* Slides embed */}
         {slidesEmbedUrl && (
           <div className="flex flex-col  gap-2">
-            <div className="font-code text-meta text-accent uppercase tracking-[0.06em]">
+            <div className="font-code text-meta text-accent uppercase tracking-[0.08em] mb-2.5">
               Slides
             </div>
             <iframe
@@ -135,7 +133,7 @@ export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {
         {/* Recording embed */}
         {recordingEmbedUrl && (
           <div className="flex flex-col  gap-2">
-            <div className="font-code text-meta text-accent uppercase tracking-[0.06em]">
+            <div className="font-code text-meta text-accent uppercase tracking-[0.08em] mb-2.5">
               Recording
             </div>
             <iframe
