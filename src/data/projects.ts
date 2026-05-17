@@ -50,12 +50,12 @@ export const PROJECTS: ProjectEntry[] = [
     stack: ["Vue.js", "Nuxt.js", "NestJS", "Node.js", "TypeScript", "LangChain.js", "OpenAI"],
     links: [
       {
-        label: "View product ↗",
+        label: "View product",
         href: "https://help.gohighlevel.com/support/solutions/articles/155000007406-how-to-manually-add-schema-markups-in-funnels-websites",
         primary: true,
       },
       {
-        label: "npm: structured-data-validator ↗",
+        label: "npm: structured-data-validator",
         href: "https://www.npmjs.com/package/@gsriram24/structured-data-validator",
       },
     ],
@@ -87,7 +87,7 @@ export const PROJECTS: ProjectEntry[] = [
     stack: ["Vue.js", "Nuxt.js", "NestJS", "LangChain.js", "OpenAI", "TypeScript"],
     links: [
       {
-        label: "View product ↗",
+        label: "View product",
         href: "https://help.gohighlevel.com/support/solutions/articles/155000006713-funnels-websites-ai",
         primary: true,
       },
@@ -121,7 +121,7 @@ export const PROJECTS: ProjectEntry[] = [
     stack: ["Vue.js", "Nuxt.js", "NestJS", "Node.js", "TypeScript", "Tailwind CSS"],
     links: [
       {
-        label: "Visit product page ↗",
+        label: "Visit product page",
         href: "https://www.gohighlevel.com/no-code-website-builder",
         primary: true,
       },
@@ -154,7 +154,7 @@ export const PROJECTS: ProjectEntry[] = [
     stack: ["Vue.js", "Nuxt.js", "NestJS", "Node.js", "TypeScript"],
     links: [
       {
-        label: "Visit ecommerce docs ↗",
+        label: "Visit ecommerce docs",
         href: "https://help.gohighlevel.com/support/solutions/articles/155000001157-how-to-set-up-an-e-commerce-online-store-websites-",
         primary: true,
       },
@@ -184,7 +184,7 @@ export const PROJECTS: ProjectEntry[] = [
     stack: ["React", "Redux", "Node.js", "Material UI", "Auth0"],
     links: [
       {
-        label: "Visit Sentinel ↗",
+        label: "Visit Sentinel",
         href: "https://sentinel.zmanda.com/",
         primary: true,
       },
@@ -275,12 +275,12 @@ export const PROJECTS: ProjectEntry[] = [
     stack: ["JavaScript", "Node.js", "Schema.org"],
     links: [
       {
-        label: "View on npm ↗",
+        label: "View on npm",
         href: "https://www.npmjs.com/package/@gsriram24/structured-data-validator",
         primary: true,
       },
       {
-        label: "Adobe upstream ↗",
+        label: "Adobe upstream",
         href: "https://github.com/adobe/structured-data-validator",
       },
     ],
@@ -312,7 +312,7 @@ export const PROJECTS: ProjectEntry[] = [
     stack: ["Python 3.8+", "GTK3", "PyGObject", "Cairo"],
     links: [
       {
-        label: "View on GitHub ↗",
+        label: "View on GitHub",
         href: "https://github.com/gsriram24/FrostCenter",
         primary: true,
       },
@@ -341,7 +341,7 @@ export const PROJECTS: ProjectEntry[] = [
     stack: ["React", "Tailwind CSS", "GSAP", "Contentful"],
     links: [
       {
-        label: "View live site ↗",
+        label: "View live site",
         href: "https://www.postbox28.com/",
         primary: true,
       },
@@ -378,7 +378,7 @@ export const PROJECTS: ProjectEntry[] = [
     stack: ["React", "Redux", "Tailwind CSS", "Node.js", "MongoDB"],
     links: [
       {
-        label: "View live site ↗",
+        label: "View live site",
         href: "https://ppresports.com/",
         primary: true,
       },
@@ -411,7 +411,7 @@ export const PROJECTS: ProjectEntry[] = [
     stack: ["Gatsby", "Tailwind CSS", "Framer Motion"],
     links: [
       {
-        label: "View live site ↗",
+        label: "View live site",
         href: "https://karankowshik.com",
         primary: true,
       },
@@ -437,7 +437,7 @@ export const PROJECTS: ProjectEntry[] = [
     stack: ["Flutter", "Flask", "React", "Redux", "Node.js", "MongoDB", "Firebase"],
     links: [
       {
-        label: "View on GitHub ↗",
+        label: "View on GitHub",
         href: "https://github.com/gsriram24/attendance_system_face_recognition_api",
         primary: true,
       },
@@ -463,7 +463,7 @@ export const PROJECTS: ProjectEntry[] = [
     stack: ["React", "PyTorch", "OpenCV", "Node.js", "MongoDB", "Leaflet"],
     links: [
       {
-        label: "View on GitHub ↗",
+        label: "View on GitHub",
         href: "https://github.com/gsriram24/crowd-repel-react",
         primary: true,
       },
@@ -487,7 +487,7 @@ export const PROJECTS: ProjectEntry[] = [
     stack: ["Flutter", "TensorFlow", "Keras"],
     links: [
       {
-        label: "View on GitHub ↗",
+        label: "View on GitHub",
         href: "https://github.com/gsriram24/see_food",
         primary: true,
       },
@@ -511,7 +511,7 @@ export const PROJECTS: ProjectEntry[] = [
     stack: ["React Native", "Node.js", "MongoDB"],
     links: [
       {
-        label: "View on GitHub ↗",
+        label: "View on GitHub",
         href: "https://github.com/gsriram24/EasyBMTC",
         primary: true,
       },
@@ -537,7 +537,7 @@ export const PROJECTS: ProjectEntry[] = [
     stack: ["React Native", "Firebase"],
     links: [
       {
-        label: "View on GitHub ↗",
+        label: "View on GitHub",
         href: "https://github.com/gsriram24/hobbyit",
         primary: true,
       },
@@ -561,7 +561,7 @@ export const PROJECTS: ProjectEntry[] = [
     stack: ["Flutter", "Firebase"],
     links: [
       {
-        label: "View on GitHub ↗",
+        label: "View on GitHub",
         href: "https://github.com/gsriram24/substitute_teacher_management",
         primary: true,
       },
@@ -586,7 +586,7 @@ export const PROJECTS: ProjectEntry[] = [
     stack: ["Python 3", "PyQT5", "MySQL"],
     links: [
       {
-        label: "View on GitHub ↗",
+        label: "View on GitHub",
         href: "https://github.com/gsriram24/ic-log",
         primary: true,
       },
