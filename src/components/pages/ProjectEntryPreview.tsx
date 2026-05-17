@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { ProjectEntry } from "@/data/types";
 import { ImagesGallery } from "./ImagesGallery";
 import { TypeBadge } from "./TypeBadge";
+import { Breadcrumb } from "./Breadcrumb";
 
 export function ProjectEntryPreview({ project }: { project: ProjectEntry }) {
   const isWorkProduct = project.type === "work-product";
@@ -13,22 +13,14 @@ export function ProjectEntryPreview({ project }: { project: ProjectEntry }) {
   return (
     <div className="flex flex-col gap-6 md:gap-8">
       {/* Back breadcrumb */}
-      <Link
+      <Breadcrumb
         href={parentHref}
-        prefetch={false}
-        className="inline-flex items-center gap-1.5 font-code text-code text-dim no-underline transition-colors duration-(--duration-fast) ease-vscode hover:text-accent w-fit"
-      >
-        <ArrowLeft size={12} strokeWidth={2.25} aria-hidden className="text-accent" />
-        <span>{parentLabel}</span>
-        {isWorkProduct && (
-          <>
-            <ChevronRight size={11} strokeWidth={2.25} aria-hidden className="text-muted" />
-            <span>{project.company}</span>
-          </>
-        )}
-        <ChevronRight size={11} strokeWidth={2.25} aria-hidden className="text-muted" />
-        <span className="text-fg">{project.slug}.tsx</span>
-      </Link>
+        segments={
+          isWorkProduct
+            ? [parentLabel, project.company!, `${project.slug}.tsx`]
+            : [parentLabel, `${project.slug}.tsx`]
+        }
+      />
 
       {/* Header — badge chip + duration + scope, then h1 */}
       <header>

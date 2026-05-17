@@ -1,8 +1,8 @@
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ExternalLink, Play } from "lucide-react";
+import { ExternalLink, Play } from "lucide-react";
 import type { TalkEntry } from "@/data/types";
 import { formatTalkDate } from "@/lib/talks";
+import { Breadcrumb } from "./Breadcrumb";
 
 function getSlidesEmbedUrl(url: string): string {
   const gsMatch = url.match(/docs\.google\.com\/presentation\/d\/([^/]+)/);
@@ -33,13 +33,7 @@ export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {
       <div className="max-w-[760px] mx-auto flex flex-col gap-5 md:gap-6">
 
         {/* Back nav */}
-        <Link
-          href="/talks"
-          className="inline-flex items-center gap-1.5 font-code text-meta text-dim no-underline hover:text-fg transition-colors duration-(--duration-fast)"
-        >
-          <ArrowLeft size={12} strokeWidth={2} />
-          talks/
-        </Link>
+        <Breadcrumb href="/talks" segments={["talks", `${t.slug}.tsx`]} />
 
         {/* Header */}
         <div className="flex flex-col gap-2.5">

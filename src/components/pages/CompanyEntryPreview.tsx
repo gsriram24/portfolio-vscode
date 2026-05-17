@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ArrowUp, ChevronRight } from "lucide-react";
+import { ArrowRight, ArrowUp } from "lucide-react";
 import type { Company } from "@/data/types";
 import { projectsOfCompany, pathForProject } from "@/lib/projects";
+import { Breadcrumb } from "./Breadcrumb";
 
 // CompanyEntry preview — renders one Company record.
 // Per handoff company-entry.jsx CompanyEntryPreview (lines 259-374):
@@ -17,16 +18,7 @@ export function CompanyEntryPreview({ company }: { company: Company }) {
   return (
     <div className="flex flex-col gap-9 md:gap-12">
       {/* Back breadcrumb */}
-      <Link
-        href="/"
-        prefetch={false}
-        className="inline-flex items-center gap-1.5 font-code text-code text-dim no-underline transition-colors duration-(--duration-fast) ease-vscode hover:text-accent w-fit"
-      >
-        <ArrowLeft size={12} strokeWidth={2.25} aria-hidden className="text-accent" />
-        <span>experience</span>
-        <ChevronRight size={11} strokeWidth={2.25} aria-hidden className="text-muted" />
-        <span className="text-fg">{company.slug}/index.ts</span>
-      </Link>
+      <Breadcrumb href="/" segments={["experience", `${company.slug}/index.ts`]} />
 
       {/* Header */}
       <header className="flex flex-col gap-2.5">
