@@ -64,7 +64,7 @@ const LINES: CodeBlockLine[] = [
     ),
   },
   {
-    blame: "you · 4y ago",
+    blame: "Sriram · 4y ago",
     content: (
       <>
         <K>import </K>
@@ -108,7 +108,7 @@ const LINES: CodeBlockLine[] = [
   },
   {
     indent: 1,
-    blame: "you · 2y ago",
+    blame: "Sriram · 2y ago",
     content: (
       <>
         <K>const </K>
@@ -141,7 +141,7 @@ const LINES: CodeBlockLine[] = [
   { content: " " },
   {
     indent: 1,
-    blame: "you · 2h ago · ship v2",
+    blame: "Sriram · 2h ago · ship v2",
     content: (
       <>
         <K>const </K>

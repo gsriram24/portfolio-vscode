@@ -15,6 +15,7 @@ export function CodeLine({
   blame,
   current,
   indent = 0,
+  wrap = false,
   onClick,
   children,
 }: {
@@ -22,12 +23,14 @@ export function CodeLine({
   blame?: string;
   current?: boolean;
   indent?: number; // 0 = no indent; 1 = 2 monospace chars; 2 = 4 chars; etc.
+  wrap?: boolean;
   onClick?: () => void; // injected by CodeBlock
   children: ReactNode;
 }) {
   return (
     <div
       onClick={onClick}
+      style={wrap ? { contain: "inline-size" } : undefined}
       className={`flex items-baseline min-h-5.5 border-l-2 ${onClick ? "cursor-text" : ""} ${
         current ? "bg-[rgba(99,109,130,0.10)] border-accent" : "border-transparent"
       }`}
@@ -36,7 +39,7 @@ export function CodeLine({
         {n}
       </span>
       <span
-        className="font-code text-[13.5px] leading-[1.65] text-fg whitespace-pre"
+        className={`font-code text-[13.5px] leading-[1.65] text-fg ${wrap ? "whitespace-pre-wrap wrap-break-word" : "whitespace-pre"}`}
         style={{ paddingLeft: `calc(18px + ${indent * 2}ch)` }}
       >
         {children}

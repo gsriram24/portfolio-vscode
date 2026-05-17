@@ -10,6 +10,8 @@ export interface CodeBlockLine {
   blame?: string;
   /** Indent level (0 = none; each level = 2 monospace chars). */
   indent?: number;
+  /** Allow the line to soft-wrap (e.g. long string values). Default false. */
+  wrap?: boolean;
 }
 
 export function CodeBlock({
@@ -36,6 +38,7 @@ export function CodeBlock({
               current={n === currentLine}
               indent={line.indent}
               blame={line.blame}
+              wrap={line.wrap}
               onClick={() => setCurrentLine(n)}
             >
               {line.content}

@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { EXPERIENCE } from "@/data/experience";
 import { CompanyEntryPreview } from "@/components/pages/CompanyEntryPreview";
+import { CompanyEntrySource } from "@/components/pages/CompanyEntrySource";
 import { ViewSwitcher } from "@/components/pages/ViewSwitcher";
-import { PlaceholderPage } from "@/components/pages/PlaceholderPage";
 
 export function generateStaticParams() {
   return EXPERIENCE.map((c) => ({ slug: c.slug }));
@@ -25,7 +25,7 @@ export default async function ExperienceSlugPage({
   if (!company) notFound();
   return (
     <ViewSwitcher
-      source={<PlaceholderPage tabId={`experience/${slug}/index.ts`} />}
+      source={<CompanyEntrySource company={company} />}
       preview={<CompanyEntryPreview company={company} />}
     />
   );
