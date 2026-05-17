@@ -18,6 +18,7 @@ export const TALKS: TalkEntry[] = [
   // ─── UPCOMING ────────────────────────────────────────────────────────
   {
     slug: "react-nexus-2026",
+    color: "var(--color-func)",
     event: "React Nexus 2026",
     title:
       "Structured Data and Schema Markup for Frontend Developers: SSR, CSR, and the AI Search Era",
@@ -30,6 +31,7 @@ export const TALKS: TalkEntry[] = [
   // ─── PAST ────────────────────────────────────────────────────────────
   {
     slug: "reactplay-april-2026",
+    color: "var(--color-type)",
     event: "ReactPlay Bengaluru · April 2026",
     title: "Your Website Isn't SEO-Ready (Until You Add Schema Markup)",
     date: new Date("2026-04-18"),
@@ -48,6 +50,7 @@ export const TALKS: TalkEntry[] = [
 
   {
     slug: "react-bangalore-84",
+    color: "var(--color-string)",
     event: "React Bangalore #84",
     title: "Data Fetching in React — Why use React Query?",
     date: new Date("2024-12-14"),
@@ -70,6 +73,7 @@ export const TALKS: TalkEntry[] = [
 
   {
     slug: "react-bangalore-78",
+    color: "var(--color-keyword)",
     event: "React Bangalore #78",
     title: "All new React Compiler!",
     date: new Date("2024-06-01"),

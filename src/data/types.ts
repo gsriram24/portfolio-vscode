@@ -88,6 +88,7 @@ export interface TalkEntry {
   title: string;
   date: Date;                  // status (upcoming/past) derived at render time
   location: string;
+  color: string;               // CSS var ref — drives accent bar + slug dot + badge per design
   description?: string;
   photo?: string;
   links?: TalkLink[];          // meetup page, slides URL, recording URL, etc. — all rendered as a flat link list (no embeds)

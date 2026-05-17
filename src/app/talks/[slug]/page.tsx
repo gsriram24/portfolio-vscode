@@ -1,8 +1,9 @@
 import { TALKS } from "@/data/talks";
+import { isUpcoming } from "@/lib/talks";
 import { PlaceholderPage } from "@/components/pages/PlaceholderPage";
 
 export function generateStaticParams() {
-  return TALKS.map((t) => ({ slug: t.slug }));
+  return TALKS.filter((t) => !isUpcoming(t)).map((t) => ({ slug: t.slug }));
 }
 
 export const dynamicParams = false;

@@ -1,6 +1,7 @@
 import { PROJECTS } from "./projects";
 import { EXPERIENCE } from "./experience";
 import { TALKS } from "./talks";
+import { isUpcoming } from "@/lib/talks";
 
 export type FileExt = "tsx" | "ts" | "md" | "json";
 
@@ -41,9 +42,8 @@ export const EXT_COLORS: Record<FileExt, string> = {
 //                        page — no sidebar file, no detail page.
 //   projects/         →  index.ts + every project where type !== "work-product"
 //                        (client + oss + personal — 12 total).
-//   talks/            →  index.ts + every talk slug (4 total). Upcoming
-//                        talks still get a sidebar entry; detail-page
-//                        rendering decides what to show based on date.
+//   talks/            →  index.ts + past talks only. Upcoming talks have
+//                        no detail page and no sidebar entry.
 export function buildFileTree(): TreeNode[] {
   return [
     { name: "Sriram.tsx", ext: "tsx", path: "Sriram.tsx" },
@@ -93,7 +93,7 @@ export function buildFileTree(): TreeNode[] {
         // yellow (text-func) dots; data-only files render teal. The README
         // listed .ts because each file is "just a data export", but the
         // visual cost outweighs the principle.
-        ...TALKS.map((t) => ({
+        ...TALKS.filter((t) => !isUpcoming(t)).map((t) => ({
           name: `${t.slug}.tsx`,
           ext: "tsx" as FileExt,
           path: `talks/${t.slug}.tsx`,
