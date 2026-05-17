@@ -2,6 +2,7 @@
 
 import { type ReactNode } from "react";
 import { useChromeStore } from "@/lib/store";
+import { useGlobalKeyboard } from "@/lib/useGlobalKeyboard";
 import { TitleBar } from "./TitleBar";
 import { ActivityBar } from "./ActivityBar";
 import { Sidebar } from "./Sidebar";
@@ -15,6 +16,7 @@ import { RouteSync } from "./RouteSync";
 
 export function ChromeShell({ children }: { children: ReactNode }) {
   const activeTab = useChromeStore((s) => s.activeTab);
+  useGlobalKeyboard();
 
   return (
     <div className="flex flex-col h-full">
@@ -70,6 +72,8 @@ export function ChromeShell({ children }: { children: ReactNode }) {
 
       {/* Slide-in nav overlay — tablet + mobile */}
       <NavOverlay />
+
+      {/* OverlayManager and MobileSheetManager added in Task 6 and Task 13 */}
     </div>
   );
 }
