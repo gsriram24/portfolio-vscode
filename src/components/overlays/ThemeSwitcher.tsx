@@ -37,6 +37,9 @@ export function ThemeSwitcher() {
     setActiveTheme(id);
   }
 
+  const isMac = typeof navigator !== "undefined" && /Mac/i.test(navigator.platform);
+  const mod = isMac ? "⌘" : "Ctrl";
+
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center pt-11 bg-[rgba(0,0,0,0.44)]">
       <Command
@@ -49,7 +52,7 @@ export function ThemeSwitcher() {
         {/* Header */}
         <div className="px-4 py-3 border-b border-border font-code text-meta text-dim">
           Select Color Theme &nbsp;·&nbsp;{" "}
-          <span className="text-fg">Ctrl T</span>
+          <span className="text-fg">{mod} ⇧ Y</span>
           &nbsp;·&nbsp; Up/Down to preview &nbsp;·&nbsp; Enter to apply
         </div>
 
@@ -89,7 +92,7 @@ export function ThemeSwitcher() {
         {/* Footer */}
         <div className="px-4 py-2 border-t border-border font-code text-meta text-dim flex">
           <span>Swatches: bg · bgElev · keyword · func · type · string · comment · accent</span>
-          <span className="ml-auto">Ctrl T</span>
+          <span className="ml-auto">{mod} ⇧ Y</span>
         </div>
       </Command>
     </div>
