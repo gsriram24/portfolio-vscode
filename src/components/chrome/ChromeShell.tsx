@@ -13,6 +13,7 @@ import { HintBar } from "./HintBar";
 import { BottomNav } from "./BottomNav";
 import { NavOverlay } from "./NavOverlay";
 import { RouteSync } from "./RouteSync";
+import { OverlayManager } from "@/components/overlays/OverlayManager";
 
 export function ChromeShell({ children }: { children: ReactNode }) {
   const activeTab = useChromeStore((s) => s.activeTab);
@@ -73,7 +74,8 @@ export function ChromeShell({ children }: { children: ReactNode }) {
       {/* Slide-in nav overlay — tablet + mobile */}
       <NavOverlay />
 
-      {/* OverlayManager and MobileSheetManager added in Task 6 and Task 13 */}
+      <OverlayManager />
+      {/* MobileSheetManager added in Task 13 */}
     </div>
   );
 }
