@@ -17,7 +17,6 @@ export function ImagesGallery({ images, title }: { images: string[]; title: stri
           width={960}
           height={600}
           className="w-full h-auto block"
-          unoptimized
         />
       </div>
 
@@ -39,7 +38,6 @@ export function ImagesGallery({ images, title }: { images: string[]; title: stri
                   width={200}
                   height={120}
                   className="w-full h-16 sm:h-30 object-cover block"
-                  unoptimized
                 />
               </div>
             </div>

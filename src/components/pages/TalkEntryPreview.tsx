@@ -101,7 +101,6 @@ export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {
               width={760}
               height={0}
               className="w-full aspect-video object-cover block"
-              unoptimized
             />
           </div>
         )}
