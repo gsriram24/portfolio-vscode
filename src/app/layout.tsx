@@ -2,6 +2,7 @@ import { type ReactNode } from "react";
 import type { Metadata } from "next";
 import { ibmPlexSans, cascadiaCode } from "@/lib/fonts";
 import { ChromeShell } from "@/components/chrome/ChromeShell";
+import { ThemeInit } from "@/components/chrome/ThemeInit";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -32,6 +33,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <ThemeInit />
         <ChromeShell>{children}</ChromeShell>
       </body>
     </html>
