@@ -22,7 +22,7 @@ export function StatusBar() {
       <span>⎇ main</span>
       <span>↑0 ↓0</span>
       <span className="ml-auto">{lang}</span>
-      <span className="px-2 rounded-[3px] bg-white/16">
+      <span className="px-2 rounded-[3px] bg-white/30">
         ● G. Sriram
       </span>
     </div>

@@ -94,13 +94,14 @@ export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {
 
         {/* Photo */}
         {t.photo && (
-          <div className="w-full rounded-sm overflow-hidden border  border-border">
+          <div className="relative w-full aspect-video rounded-sm overflow-hidden border border-border">
             <Image
               src={t.photo}
               alt={`${t.event} — ${t.title}`}
-              width={760}
-              height={0}
-              className="w-full aspect-video object-cover block"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 760px"
+              className="object-cover"
             />
           </div>
         )}
@@ -123,6 +124,8 @@ export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {
             </div>
             <iframe
               src={slidesEmbedUrl}
+              title="Slides"
+              loading="lazy"
               className="w-full aspect-video rounded-sm border border-border"
               allowFullScreen
             />
@@ -137,6 +140,8 @@ export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {
             </div>
             <iframe
               src={recordingEmbedUrl}
+              title="Recording"
+              loading="lazy"
               className="w-full aspect-video rounded-sm border border-border"
               allowFullScreen
             />

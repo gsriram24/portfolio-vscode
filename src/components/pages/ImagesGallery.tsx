@@ -16,6 +16,8 @@ export function ImagesGallery({ images, title }: { images: string[]; title: stri
           alt={`${title} screenshot ${selected + 1}`}
           width={960}
           height={600}
+          priority={selected === 0}
+          sizes="(max-width: 768px) 100vw, 960px"
           className="w-full h-auto block"
         />
       </div>

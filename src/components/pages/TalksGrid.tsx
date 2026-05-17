@@ -83,7 +83,7 @@ function TalkCard({ talk: t }: { talk: TalkEntry }) {
               href={meetup.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-code text-meta text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast) leading-none"
+              className="inline-flex items-center gap-1 font-code text-meta text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast) leading-none py-2"
             >
               <ExternalLink size={10} strokeWidth={2} aria-hidden /> meetup
             </a>
@@ -93,7 +93,7 @@ function TalkCard({ talk: t }: { talk: TalkEntry }) {
               href={t.slidesUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-code text-meta text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast) leading-none"
+              className="inline-flex items-center gap-1 font-code text-meta text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast) leading-none py-2"
             >
               <ExternalLink size={10} strokeWidth={2} aria-hidden /> slides
             </a>
@@ -103,7 +103,7 @@ function TalkCard({ talk: t }: { talk: TalkEntry }) {
               href={t.recordingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-code text-meta text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast) leading-none"
+              className="inline-flex items-center gap-1 font-code text-meta text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast) leading-none py-2"
             >
               <Play size={10} strokeWidth={2} fill="currentColor" aria-hidden /> recording
             </a>

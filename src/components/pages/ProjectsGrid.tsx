@@ -85,7 +85,7 @@ function ProjectCard({ project: p }: { project: ProjectEntry }) {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex items-center gap-1 font-code text-meta tracking-normal no-underline hover:opacity-80 transition-opacity duration-(--duration-fast) leading-none ${link.primary ? "text-accent" : "text-dim"}`}
+              className={`inline-flex items-center gap-1 font-code text-meta tracking-normal no-underline hover:opacity-80 transition-opacity duration-(--duration-fast) leading-none py-2 ${link.primary ? "text-accent" : "text-dim"}`}
             >
               <ExternalLink size={10} strokeWidth={2} aria-hidden />
               {link.label}
