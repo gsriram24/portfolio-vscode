@@ -2,23 +2,16 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronRight } from "lucide-react";
 import type { ProjectEntry } from "@/data/types";
 import { ImagesGallery } from "./ImagesGallery";
-
-const TYPE_LABELS: Record<ProjectEntry["type"], string> = {
-  "work-product": "Work Product",
-  oss: "Open Source",
-  client: "Client",
-  personal: "Personal",
-};
+import { TypeBadge } from "./TypeBadge";
 
 export function ProjectEntryPreview({ project }: { project: ProjectEntry }) {
   const isWorkProduct = project.type === "work-product";
   const parentHref = isWorkProduct ? `/experience/${project.company}` : "/projects";
   const parentLabel = isWorkProduct ? "experience" : "projects";
-  const badge = TYPE_LABELS[project.type];
   const scope = project.tags?.join(" · ");
 
   return (
-    <div className="flex flex-col gap-8 md:gap-10">
+    <div className="flex flex-col gap-6 md:gap-8">
       {/* Back breadcrumb */}
       <Link
         href={parentHref}
@@ -40,9 +33,7 @@ export function ProjectEntryPreview({ project }: { project: ProjectEntry }) {
       {/* Header — badge chip + duration + scope, then h1 */}
       <header>
         <div className="flex items-center gap-2.5 flex-wrap mb-2.5">
-          <span className="font-code text-meta text-type border border-type rounded-[3px] px-2 py-0.5">
-            {badge}
-          </span>
+          <TypeBadge type={project.type} />
           {project.duration && (
             <span className="font-code text-meta text-dim">{project.duration}</span>
           )}
