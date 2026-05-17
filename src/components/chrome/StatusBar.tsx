@@ -17,7 +17,7 @@ export function StatusBar() {
   // Design: padding 0 12px · gap 14 · ⎇ symbol (not icon) · left items then auto-margin pushes right items
   return (
     <div
-      className="h-6 flex items-center px-3 shrink-0 font-code text-[11.5px] text-white bg-status-bar gap-3.5"
+      className="h-6 flex items-center px-3 shrink-0 font-code text-[11.5px] text-status-bar-text bg-status-bar gap-3.5"
     >
       <span>⎇ main</span>
       <span>↑0 ↓0</span>
