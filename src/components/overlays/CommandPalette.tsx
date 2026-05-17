@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { Command } from "cmdk";
 import {
   Command as CommandIcon,
@@ -11,44 +10,22 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useChromeStore } from "@/lib/store";
-import { fuse } from "@/lib/search";
+import { paletteFilter } from "@/lib/search";
 import { SEARCH_INDEX, type SearchEntry } from "@/data/search-index";
-import { EXT_COLORS, type FileExt } from "@/data/files";
-import { pathFor } from "@/lib/routes";
+import { EXT_COLORS } from "@/data/files";
 import { SRIRAM } from "@/data/sriram";
 import { CONTACT } from "@/data/contact";
-
-function fileExt(path: string): FileExt {
-  return (path.split(".").pop() ?? "ts") as FileExt;
-}
-
-function fileLabel(path: string): string {
-  const parts = path.split("/");
-  const leaf = parts[parts.length - 1] ?? path;
-  if (/^index\.[a-z]+$/i.test(leaf) && parts.length >= 2) {
-    return `${parts[parts.length - 2]}/${leaf}`;
-  }
-  return leaf;
-}
+import { fileExt, fileLabel } from "@/lib/file-utils";
+import { useNavigateTo } from "@/lib/useNavigateTo";
 
 export function CommandPalette() {
-  const router = useRouter();
   const overlay = useChromeStore((s) => s.overlay);
   const setOverlay = useChromeStore((s) => s.setOverlay);
   const recentTabs = useChromeStore((s) => s.recentTabs);
-  const openTab = useChromeStore((s) => s.openTab);
-  const setActiveTab = useChromeStore((s) => s.setActiveTab);
-
   const isCommandsMode = overlay === "palette-commands";
 
   const recent = recentTabs.slice(-3).reverse();
-
-  function navigateTo(path: string) {
-    openTab(path);
-    setActiveTab(path);
-    router.push(pathFor(path));
-    setOverlay(null);
-  }
+  const navigateTo = useNavigateTo(() => setOverlay(null));
 
   function copyEmail() {
     navigator.clipboard.writeText(CONTACT.email).catch(() => {});
@@ -76,18 +53,7 @@ export function CommandPalette() {
         aria-modal="true"
         aria-label="Command Palette"
         onClick={(e) => e.stopPropagation()}
-        filter={(value, search, keywords) => {
-          if (!search) return 1;
-          // Commands carry keywords — match by simple string inclusion
-          if (keywords?.length) {
-            const q = search.toLowerCase();
-            return keywords.some((k) => k.toLowerCase().includes(q)) ? 1 : 0;
-          }
-          // File/page items — match via Fuse
-          const results = fuse.search(search);
-          const match = results.find((r) => r.item.path === value || r.item.name === value);
-          return match ? 1 - (match.score ?? 0) : 0;
-        }}
+        filter={paletteFilter}
       >
         {/* Input row */}
         <div className="flex items-center gap-2.5 border-b border-border px-4">

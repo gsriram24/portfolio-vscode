@@ -104,7 +104,7 @@ function SearchPanel() {
 
   const results: SearchEntry[] = query
     ? fuse.search(query).map((r) => r.item)
-    : SEARCH_INDEX;
+    : [];
 
   function navigateTo(path: string) {
     openTab(path);

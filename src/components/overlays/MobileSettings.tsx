@@ -93,20 +93,6 @@ export function MobileSettings() {
           </div>
         </div>
 
-        {/* Default view */}
-        <div className="px-4 pt-4 pb-3.5 border-b border-border shrink-0">
-          <div className="font-ui text-code text-dim mb-2.5">Default view</div>
-          <div className="inline-flex bg-bg border border-border rounded-md overflow-hidden">
-            <div className="flex items-center gap-1.75 px-6 py-2.25 bg-side-hi border-r border-border">
-              <span className="font-code text-code text-fg-hi">{"</>"}</span>
-              <span className="font-ui text-ui text-fg-hi">Source</span>
-            </div>
-            <div className="flex items-center gap-1.75 px-6 py-2.25">
-              <span className="font-code text-code text-dim">◧</span>
-              <span className="font-ui text-ui text-dim">Preview</span>
-            </div>
-          </div>
-        </div>
 
         {/* About */}
         <div className="flex items-center justify-between px-4 pt-3.5 pb-6 shrink-0">

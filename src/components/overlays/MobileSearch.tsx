@@ -1,49 +1,25 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { Command } from "cmdk";
 import { Search as SearchIcon, ChevronRight, Command as CommandIcon, Mail, ExternalLink } from "lucide-react";
 import { useChromeStore } from "@/lib/store";
-import { fuse } from "@/lib/search";
+import { paletteFilter } from "@/lib/search";
 import { SEARCH_INDEX, type SearchEntry } from "@/data/search-index";
-import { EXT_COLORS, type FileExt } from "@/data/files";
-import { pathFor } from "@/lib/routes";
+import { EXT_COLORS } from "@/data/files";
 import { SRIRAM } from "@/data/sriram";
 import { CONTACT } from "@/data/contact";
-
-function fileExt(path: string): FileExt {
-  return (path.split(".").pop() ?? "ts") as FileExt;
-}
-
-function fileLabel(path: string): string {
-  const parts = path.split("/");
-  const leaf = parts[parts.length - 1] ?? path;
-  if (/^index\.[a-z]+$/i.test(leaf) && parts.length >= 2) {
-    return `${parts[parts.length - 2]}/${leaf}`;
-  }
-  return leaf;
-}
+import { fileExt, fileLabel } from "@/lib/file-utils";
+import { useNavigateTo } from "@/lib/useNavigateTo";
 
 export function MobileSearch() {
-  const router = useRouter();
   const setMobileSheet = useChromeStore((s) => s.setMobileSheet);
   const setOverlay = useChromeStore((s) => s.setOverlay);
   const recentTabs = useChromeStore((s) => s.recentTabs);
-  const openTab = useChromeStore((s) => s.openTab);
-  const setActiveTab = useChromeStore((s) => s.setActiveTab);
 
   const recent = recentTabs.slice(-3).reverse();
-
-  function navigateTo(path: string) {
-    openTab(path);
-    setActiveTab(path);
-    router.push(pathFor(path));
-    setMobileSheet(null);
-  }
-
-  const allEntries: SearchEntry[] = SEARCH_INDEX.filter(
-    (e) => !new Set(recent).has(e.path)
-  );
+  const recentPaths = new Set(recent);
+  const allEntries: SearchEntry[] = SEARCH_INDEX.filter((e) => !recentPaths.has(e.path));
+  const navigateTo = useNavigateTo(() => setMobileSheet(null));
 
   return (
     <div className="fixed inset-0 z-50 md:hidden">
@@ -57,14 +33,10 @@ export function MobileSearch() {
         </div>
 
         <Command
-          filter={(value, search) => {
-            if (!search) return 1;
-            const results = fuse.search(search);
-            const match = results.find((r) => r.item.path === value || r.item.name === value);
-            return match ? 1 - (match.score ?? 0) : 0;
-          }}
+          className="flex flex-col min-h-0 overflow-hidden"
+          filter={paletteFilter}
         >
-          <div className="mx-3.5 mt-2 mb-2.5 flex items-center gap-2.5 px-3 py-2.5 bg-bg border border-accent rounded-md">
+          <div className="mx-3.5 mt-2 mb-2.5 flex items-center gap-2.5 px-3 py-2.5 bg-bg border border-accent rounded-md shrink-0">
             <SearchIcon size={16} className="text-dim shrink-0" />
             <Command.Input
               autoFocus
@@ -104,6 +76,7 @@ export function MobileSearch() {
             <Command.Group heading="Commands">
               <Command.Item
                 value="change-color-theme"
+                keywords={["change color theme", "theme", "appearance", "color", "dark", "light"]}
                 onSelect={() => { setMobileSheet(null); setOverlay("theme"); }}
                 className="flex items-center gap-3 px-4 py-3 cursor-pointer border-l-2 border-l-transparent data-[selected=true]:bg-side-hi data-[selected=true]:border-l-accent"
               >
@@ -112,6 +85,7 @@ export function MobileSearch() {
               </Command.Item>
               <Command.Item
                 value="copy-email"
+                keywords={["copy email", "email", "contact", "clipboard", "mail"]}
                 onSelect={() => { navigator.clipboard.writeText(CONTACT.email).catch(() => {}); setMobileSheet(null); }}
                 className="flex items-center gap-3 px-4 py-3 cursor-pointer border-l-2 border-l-transparent data-[selected=true]:bg-side-hi data-[selected=true]:border-l-accent"
               >
@@ -120,6 +94,7 @@ export function MobileSearch() {
               </Command.Item>
               <Command.Item
                 value="view-resume"
+                keywords={["view resume", "resume", "cv", "download"]}
                 onSelect={() => { window.open(SRIRAM.links.resume, "_blank", "noopener,noreferrer"); setMobileSheet(null); }}
                 className="flex items-center gap-3 px-4 py-3 cursor-pointer border-l-2 border-l-transparent data-[selected=true]:bg-side-hi data-[selected=true]:border-l-accent"
               >
