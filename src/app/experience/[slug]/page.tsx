@@ -3,6 +3,7 @@ import { EXPERIENCE } from "@/data/experience";
 import { CompanyEntryPreview } from "@/components/pages/CompanyEntryPreview";
 import { CompanyEntrySource } from "@/components/pages/CompanyEntrySource";
 import { ViewSwitcher } from "@/components/pages/ViewSwitcher";
+import { ExperienceHint } from "@/components/pages/ExperienceHint";
 
 export function generateStaticParams() {
   return EXPERIENCE.map((c) => ({ slug: c.slug }));
@@ -24,9 +25,12 @@ export default async function ExperienceSlugPage({
   const company = EXPERIENCE.find((c) => c.slug === slug);
   if (!company) notFound();
   return (
-    <ViewSwitcher
-      source={<CompanyEntrySource company={company} />}
-      preview={<CompanyEntryPreview company={company} />}
-    />
+    <>
+      <ExperienceHint />
+      <ViewSwitcher
+        source={<CompanyEntrySource company={company} />}
+        preview={<CompanyEntryPreview company={company} />}
+      />
+    </>
   );
 }

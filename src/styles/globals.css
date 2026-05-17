@@ -313,3 +313,10 @@
     --duration-slow: 0ms;
   }
 }
+
+/* Sonner: offset above bottom nav on mobile */
+@media (max-width: 767px) {
+  [data-sonner-toaster] {
+    bottom: 80px !important;
+  }
+}
