@@ -11,14 +11,33 @@ export const personSchema = {
   description:
     "SDE-III at HighLevel. Building large-scale SaaS products, AI-powered features, and SEO tooling on the Funnels & Websites platform.",
   image: `${SITE_URL}/sriram-og.jpg`,
+  homeLocation: {
+    "@type": "Place",
+    addressLocality: "Bengaluru",
+    addressCountry: "IN",
+  },
+  hasOccupation: {
+    "@type": "Occupation",
+    name: "Software Development Engineer",
+    occupationLocation: { "@type": "Country", name: "India" },
+    skills: "Vue.js, Nuxt.js, React, Next.js, Node.js, NestJS, TypeScript",
+  },
+  knowsLanguage: ["English", "Tamil"],
   worksFor: {
     "@type": "Organization",
     "@id": "https://www.gohighlevel.com/#organization",
     name: "HighLevel",
     url: "https://www.gohighlevel.com",
+    description: "SaaS platform for marketing agencies and freelancers",
+    sameAs: ["https://www.linkedin.com/company/gohighlevel"],
   },
   alumniOf: [
-    { "@type": "Organization", name: "BETSOL", url: "https://www.betsol.com" },
+    {
+      "@type": "Organization",
+      name: "BETSOL",
+      url: "https://www.betsol.com",
+      sameAs: ["https://www.linkedin.com/company/betsol"],
+    },
     { "@type": "Organization", name: "Dhiyo" },
   ],
   knowsAbout: [
