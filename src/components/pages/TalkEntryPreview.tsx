@@ -29,9 +29,8 @@ export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {
   const recordingEmbedUrl = t.recordingUrl ? getYouTubeEmbedUrl(t.recordingUrl) : null;
 
   return (
-    <div className="overflow-auto h-full py-8 px-5 md:px-10 pb-12">
-      <div className="max-w-[760px] mx-auto flex flex-col gap-5 md:gap-6">
-
+    <div className="overflow-auto h-full pb-12">
+      <div className="max-w-360 flex flex-col gap-6 md:gap-8">
         {/* Back nav */}
         <Breadcrumb href="/talks" segments={["talks", `${t.slug}.tsx`]} />
 
@@ -60,20 +59,32 @@ export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {
           {(meetup || t.slidesUrl || t.recordingUrl) && (
             <div className="flex gap-3 flex-wrap">
               {meetup && (
-                <a href={meetup.href} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-code text-meta text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast)">
+                <a
+                  href={meetup.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 font-code text-meta text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast)"
+                >
                   <ExternalLink size={10} strokeWidth={2} aria-hidden /> meetup event
                 </a>
               )}
               {t.slidesUrl && (
-                <a href={t.slidesUrl} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-code text-meta text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast)">
+                <a
+                  href={t.slidesUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 font-code text-meta text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast)"
+                >
                   <ExternalLink size={10} strokeWidth={2} aria-hidden /> slides
                 </a>
               )}
               {t.recordingUrl && (
-                <a href={t.recordingUrl} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-code text-meta text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast)">
+                <a
+                  href={t.recordingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 font-code text-meta text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast)"
+                >
                   <Play size={10} strokeWidth={2} fill="currentColor" aria-hidden /> recording
                 </a>
               )}
@@ -83,13 +94,13 @@ export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {
 
         {/* Photo */}
         {t.photo && (
-          <div className="w-full rounded-sm overflow-hidden border border-border">
+          <div className="w-full rounded-sm overflow-hidden border  border-border">
             <Image
               src={t.photo}
               alt={`${t.event} — ${t.title}`}
               width={760}
-              height={340}
-              className="w-full h-[200px] md:h-[340px] object-cover block"
+              height={0}
+              className="w-full aspect-video object-cover block"
               unoptimized
             />
           </div>
@@ -109,7 +120,7 @@ export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {
 
         {/* Slides embed */}
         {slidesEmbedUrl && (
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col  gap-2">
             <div className="font-code text-meta text-accent uppercase tracking-[0.06em]">
               Slides
             </div>
@@ -123,7 +134,7 @@ export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {
 
         {/* Recording embed */}
         {recordingEmbedUrl && (
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col  gap-2">
             <div className="font-code text-meta text-accent uppercase tracking-[0.06em]">
               Recording
             </div>
@@ -134,7 +145,6 @@ export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {
             />
           </div>
         )}
-
       </div>
     </div>
   );

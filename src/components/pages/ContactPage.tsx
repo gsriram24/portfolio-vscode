@@ -88,9 +88,7 @@ export function ContactPage() {
         <h1 className="font-ui text-h2 font-bold text-fg-hi m-0 tracking-tight leading-none mb-1">
           contact.ts
         </h1>
-        <div className="font-code text-meta text-dim mb-5">
-          {`// open to Senior IC · Staff · freelance`}
-        </div>
+
         {/* Link rows */}
         <div className="flex flex-col">
           {LINKS.map((l) => (

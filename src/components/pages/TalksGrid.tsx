@@ -36,8 +36,6 @@ function TalkCard({ talk: t }: { talk: TalkEntry }) {
   const date = formatTalkDate(t);
 
   const meetup = t.links?.find((l) => l.label.toLowerCase().includes("meetup"));
-  const slides = t.links?.find((l) => l.label.toLowerCase().includes("slides"));
-  const recording = t.links?.find((l) => l.label.toLowerCase().includes("recording"));
 
   return (
     <div
@@ -90,9 +88,9 @@ function TalkCard({ talk: t }: { talk: TalkEntry }) {
               <ExternalLink size={10} strokeWidth={2} aria-hidden /> meetup
             </a>
           )}
-          {slides && (
+          {t.slidesUrl && (
             <a
-              href={slides.href}
+              href={t.slidesUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 font-code text-meta text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast) leading-none"
@@ -100,9 +98,9 @@ function TalkCard({ talk: t }: { talk: TalkEntry }) {
               <ExternalLink size={10} strokeWidth={2} aria-hidden /> slides
             </a>
           )}
-          {recording && (
+          {t.recordingUrl && (
             <a
-              href={recording.href}
+              href={t.recordingUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 font-code text-meta text-accent no-underline hover:opacity-80 transition-opacity duration-(--duration-fast) leading-none"
@@ -110,7 +108,7 @@ function TalkCard({ talk: t }: { talk: TalkEntry }) {
               <Play size={10} strokeWidth={2} fill="currentColor" aria-hidden /> recording
             </a>
           )}
-          {!meetup && !slides && !recording && (
+          {!meetup && !t.slidesUrl && !t.recordingUrl && (
             <span className="font-code text-meta text-muted">
               {upcoming ? "// links TBA" : "// no recording"}
             </span>

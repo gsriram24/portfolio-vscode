@@ -16,7 +16,7 @@ export function CompanyEntryPreview({ company }: { company: Company }) {
   const hasResponsibilities = !!company.responsibilities?.length;
 
   return (
-    <div className="flex flex-col gap-9 md:gap-12">
+    <div className="flex flex-col gap-6 md:gap-8">
       {/* Back breadcrumb */}
       <Breadcrumb href="/" segments={["experience", `${company.slug}/index.ts`]} />
 
