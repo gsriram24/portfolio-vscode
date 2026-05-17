@@ -1,24 +1,13 @@
 import Image from "next/image";
 import { ExternalLink, Play } from "lucide-react";
 import type { TalkEntry } from "@/data/types";
-import { formatTalkDate } from "@/lib/talks";
+import { formatTalkDate, getYouTubeEmbedUrl } from "@/lib/talks";
 import { Breadcrumb } from "./Breadcrumb";
 
 function getSlidesEmbedUrl(url: string): string {
   const gsMatch = url.match(/docs\.google\.com\/presentation\/d\/([^/]+)/);
   if (gsMatch) return `https://docs.google.com/presentation/d/${gsMatch[1]}/embed`;
   return url;
-}
-
-function getYouTubeEmbedUrl(url: string): string | null {
-  const watchMatch = url.match(/youtube\.com\/watch\?v=([^&]+)/);
-  if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}`;
-  const liveMatch = url.match(/youtube\.com\/live\/([^?]+)/);
-  if (liveMatch) {
-    const tMatch = url.match(/[?&]t=(\d+)/);
-    return `https://www.youtube.com/embed/${liveMatch[1]}${tMatch ? `?start=${tMatch[1]}` : ""}`;
-  }
-  return null;
 }
 
 export function TalkEntryPreview({ talk: t }: { talk: TalkEntry }) {

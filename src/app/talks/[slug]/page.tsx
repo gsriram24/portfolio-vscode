@@ -4,7 +4,7 @@ import { ViewSwitcher } from "@/components/pages/ViewSwitcher";
 import { TalkEntryPreview } from "@/components/pages/TalkEntryPreview";
 import { TalkEntrySource } from "@/components/pages/TalkEntrySource";
 import { TALKS } from "@/data/talks";
-import { findTalk, isUpcoming } from "@/lib/talks";
+import { findTalk, isUpcoming, getYouTubeEmbedUrl } from "@/lib/talks";
 import { pageMetadata, SITE_URL } from "@/lib/metadata";
 import { jsonLd, breadcrumbs } from "@/lib/schema";
 
@@ -70,7 +70,7 @@ export default async function TalkPage({
             subjectOf: {
               "@type": "VideoObject",
               name: talk.title,
-              embedUrl: talk.recordingUrl.replace("watch?v=", "embed/"),
+              embedUrl: getYouTubeEmbedUrl(talk.recordingUrl) ?? talk.recordingUrl,
             },
           }
         : {}),

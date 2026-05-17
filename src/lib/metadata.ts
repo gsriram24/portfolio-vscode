@@ -32,7 +32,7 @@ export function pageMetadata({
   const image = ogUrl(ogParams);
 
   return {
-    title: metaTitle,
+    title: { absolute: metaTitle },
     description: metaDesc,
     metadataBase: new URL(SITE_URL),
     alternates: { canonical: metaUrl },
