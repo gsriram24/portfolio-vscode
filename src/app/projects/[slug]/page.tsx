@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { listingProjects, findProject } from "@/lib/projects";
 import { ProjectEntryPreview } from "@/components/pages/ProjectEntryPreview";
+import { ProjectEntrySource } from "@/components/pages/ProjectEntrySource";
 import { ViewSwitcher } from "@/components/pages/ViewSwitcher";
-import { PlaceholderPage } from "@/components/pages/PlaceholderPage";
 
 // Only non-work-product projects render at /projects/[slug]. Work-products
 // live under /experience/[co]/[project].
@@ -27,7 +27,7 @@ export default async function ProjectSlugPage({
   if (!project) notFound();
   return (
     <ViewSwitcher
-      source={<PlaceholderPage tabId={`projects/${slug}.tsx`} />}
+      source={<ProjectEntrySource project={project} />}
       preview={<ProjectEntryPreview project={project} />}
     />
   );

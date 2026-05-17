@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { ViewSwitcher } from "@/components/pages/ViewSwitcher";
 import { TalkEntryPreview } from "@/components/pages/TalkEntryPreview";
-import { PlaceholderPage } from "@/components/pages/PlaceholderPage";
+import { TalkEntrySource } from "@/components/pages/TalkEntrySource";
 import { TALKS } from "@/data/talks";
 import { findTalk, isUpcoming } from "@/lib/talks";
 
@@ -28,7 +28,7 @@ export default async function TalkPage({
 
   return (
     <ViewSwitcher
-      source={<PlaceholderPage tabId={`talks/${slug}.tsx`} />}
+      source={<TalkEntrySource talk={talk} />}
       preview={<TalkEntryPreview talk={talk} />}
     />
   );

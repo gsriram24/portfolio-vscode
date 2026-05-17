@@ -2,8 +2,8 @@ import { notFound } from "next/navigation";
 import { PROJECTS } from "@/data/projects";
 import { findProject } from "@/lib/projects";
 import { ProjectEntryPreview } from "@/components/pages/ProjectEntryPreview";
+import { ProjectEntrySource } from "@/components/pages/ProjectEntrySource";
 import { ViewSwitcher } from "@/components/pages/ViewSwitcher";
-import { PlaceholderPage } from "@/components/pages/PlaceholderPage";
 
 // Work-product detail page. Only generated for work-products that opted
 // into a detail page (hasDetailPage !== false). Thin work-products
@@ -30,12 +30,12 @@ export default async function WorkProductPage({
 }: {
   params: Promise<{ slug: string; project: string }>;
 }) {
-  const { slug, project: projectSlug } = await params;
+  const { project: projectSlug } = await params;
   const project = findProject(projectSlug);
   if (!project) notFound();
   return (
     <ViewSwitcher
-      source={<PlaceholderPage tabId={`experience/${slug}/${projectSlug}.tsx`} />}
+      source={<ProjectEntrySource project={project} />}
       preview={<ProjectEntryPreview project={project} />}
     />
   );

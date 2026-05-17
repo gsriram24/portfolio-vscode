@@ -1,17 +1,16 @@
 import { CodeBlock, A, C, Fn, J, K, P, S, T, V, type CodeBlockLine } from "@/components/code";
 import type { Company } from "@/data/types";
 import { projectsOfCompany } from "@/lib/projects";
-
-
-const BLAMES: Record<string, { export?: string; stack?: string; promoted?: string }> = {
-  highlevel: { export: "Sriram · 1y ago", stack: "Sriram · 3mo ago · added claude", promoted: "Sriram · 2w ago" },
-  betsol:    { export: "Sriram · 4y ago", promoted: "Sriram · 2y ago" },
-  dhiyo:     { export: "Sriram · 5y ago" },
-};
+import { timeAgo, parseDurationStart } from "@/lib/blame";
 
 export function CompanyEntrySource({ company }: { company: Company }) {
   const projects = projectsOfCompany(company.slug);
-  const blame = BLAMES[company.slug] ?? {};
+  const promotedRole = company.roles.find((r) => r.promoted);
+  const exportBlame = timeAgo(parseDurationStart(company.duration));
+  const promotedBlame = promotedRole ? timeAgo(parseDurationStart(promotedRole.duration)) : undefined;
+  const stackBlame = company.slug === "highlevel"
+    ? timeAgo(parseDurationStart(promotedRole!.duration), "added claude")
+    : undefined;
   const lines: CodeBlockLine[] = [];
 
   // ── JSDoc ─────────────────────────────────────────────────────────────
@@ -64,7 +63,7 @@ export function CompanyEntrySource({ company }: { company: Company }) {
 
   // ── export const ──────────────────────────────────────────────────────
   lines.push({
-    blame: blame.export,
+    blame: exportBlame,
     content: (
       <>
         <K>export const </K>
@@ -162,7 +161,7 @@ export function CompanyEntrySource({ company }: { company: Company }) {
     if (role.promoted) {
       lines.push({
         indent: 3,
-        blame: i === 0 ? blame.promoted : undefined,
+        blame: i === 0 ? promotedBlame : undefined,
         content: (
           <>
             <A>promoted</A>
@@ -181,7 +180,7 @@ export function CompanyEntrySource({ company }: { company: Company }) {
   // ── stack ─────────────────────────────────────────────────────────────
   lines.push({
     indent: 1,
-    blame: blame.stack,
+    blame: stackBlame,
     content: (
       <>
         <A>stack</A>

@@ -1,13 +1,13 @@
 import { ViewSwitcher } from "@/components/pages/ViewSwitcher";
 import { TalksGrid } from "@/components/pages/TalksGrid";
-import { PlaceholderPage } from "@/components/pages/PlaceholderPage";
+import { TalksIndexSource } from "@/components/pages/TalksIndexSource";
 
 export const metadata = { title: "talks — gsriram.dev" };
 
 export default function TalksIndexPage() {
   return (
     <ViewSwitcher
-      source={<PlaceholderPage tabId="talks/index.ts" />}
+      source={<TalksIndexSource />}
       preview={<TalksGrid />}
     />
   );

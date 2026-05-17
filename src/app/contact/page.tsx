@@ -1,13 +1,13 @@
 import { ViewSwitcher } from "@/components/pages/ViewSwitcher";
 import { ContactPage } from "@/components/pages/ContactPage";
-import { PlaceholderPage } from "@/components/pages/PlaceholderPage";
+import { ContactSource } from "@/components/pages/ContactSource";
 
 export const metadata = { title: "contact.ts — gsriram.dev" };
 
 export default function ContactPageRoute() {
   return (
     <ViewSwitcher
-      source={<PlaceholderPage tabId="contact.ts" />}
+      source={<ContactSource />}
       preview={<ContactPage />}
     />
   );

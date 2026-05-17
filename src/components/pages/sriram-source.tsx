@@ -1,6 +1,8 @@
 import { CodeBlock, A, Fn, J, K, P, S, T, V, type CodeBlockLine } from "@/components/code";
 import { SRIRAM } from "@/data/sriram";
 import { CONTACT } from "@/data/contact";
+import { EXPERIENCE } from "@/data/experience";
+import { timeAgo, parseDurationStart } from "@/lib/blame";
 
 // Source view = `Sriram.tsx` body per homepages4.jsx:233-269.
 // - All data values flow from SRIRAM (SSOT).
@@ -64,7 +66,7 @@ const LINES: CodeBlockLine[] = [
     ),
   },
   {
-    blame: "Sriram · 4y ago",
+    blame: timeAgo(parseDurationStart(EXPERIENCE[1].duration)),
     content: (
       <>
         <K>import </K>
@@ -108,7 +110,7 @@ const LINES: CodeBlockLine[] = [
   },
   {
     indent: 1,
-    blame: "Sriram · 2y ago",
+    blame: timeAgo(parseDurationStart(EXPERIENCE[0].roles[0].duration)),
     content: (
       <>
         <K>const </K>
