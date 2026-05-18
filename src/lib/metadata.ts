@@ -1,7 +1,7 @@
 // src/lib/metadata.ts
 import type { Metadata } from "next";
 
-export const SITE_URL = "https://gsriram.dev";
+export const SITE_URL = "https://www.gsriram.dev";
 export const SITE_NAME = "G Sriram";
 export const DEFAULT_TITLE = "G Sriram — Software Engineer";
 export const DEFAULT_DESCRIPTION =
