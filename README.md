@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# gsriram.dev
 
-## Getting Started
+Personal portfolio built as a VS Code clone — file explorer, tabs, command palette, theme switcher, and all. Live at [www.gsriram.dev](https://www.gsriram.dev).
 
-First, run the development server:
+## Stack
+
+- **Framework** — Next.js 16 (App Router, fully SSG)
+- **Styling** — Tailwind CSS v4
+- **State** — Zustand v5
+- **Search** — cmdk + Fuse.js
+- **Email** — Resend
+- **Fonts** — Cascadia Code, Geist
+
+## Features
+
+- VS Code chrome — activity bar, sidebar, tabs, breadcrumb, status bar
+- Command palette (`Ctrl/⌘ Shift P`) and search (`Ctrl/⌘ K`)
+- 6 colour themes including light mode (`Ctrl/⌘ Shift Y`)
+- Source / Split / Preview view modes
+- Mobile-responsive with bottom nav and sheet overlays
+- OG image generation via `next/og` (edge runtime)
+- JSON-LD schemas, sitemap, robots.txt
+
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/          # Next.js routes and API
+├── components/
+│   ├── chrome/   # VS Code shell (tabs, sidebar, status bar)
+│   ├── overlays/ # Command palette, theme switcher, hints
+│   └── pages/    # Page content components
+├── data/         # Content — experience, projects, talks, stack
+└── lib/          # Utilities, store, theme, metadata
+```
 
-## Learn More
+## Content
 
-To learn more about Next.js, take a look at the following resources:
+All content lives in `src/data/` as TypeScript files — no CMS, no database.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deployed on Vercel. Push to `main` triggers a production deploy.
