@@ -13,7 +13,6 @@ import { useNavigateTo } from "@/lib/useNavigateTo";
 
 export function MobileSearch() {
   const setMobileSheet = useChromeStore((s) => s.setMobileSheet);
-  const setOverlay = useChromeStore((s) => s.setOverlay);
   const recentTabs = useChromeStore((s) => s.recentTabs);
 
   const recent = recentTabs.slice(-3).reverse();
@@ -77,7 +76,7 @@ export function MobileSearch() {
               <Command.Item
                 value="change-color-theme"
                 keywords={["change color theme", "theme", "appearance", "color", "dark", "light"]}
-                onSelect={() => { setMobileSheet(null); setOverlay("theme"); }}
+                onSelect={() => setMobileSheet("settings")}
                 className="flex items-center gap-3 px-4 py-3 cursor-pointer border-l-2 border-l-transparent data-[selected=true]:bg-side-hi data-[selected=true]:border-l-accent"
               >
                 <CommandIcon size={13} className="shrink-0 text-keyword" />

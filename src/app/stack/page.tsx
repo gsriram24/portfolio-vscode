@@ -1,7 +1,7 @@
 import { ViewSwitcher } from "@/components/pages/ViewSwitcher";
 import { StackPage } from "@/components/pages/StackPage";
 import { StackSource } from "@/components/pages/StackSource";
-import { ThemeHint } from "@/components/overlays/ThemeHint";
+import { Hint } from "@/components/overlays/Hint";
 import { pageMetadata } from "@/lib/metadata";
 
 import type { Metadata } from "next";
@@ -15,7 +15,12 @@ export const metadata: Metadata = pageMetadata({
 export default function StackPageRoute() {
   return (
     <>
-      <ThemeHint />
+      <Hint
+        id="hint-stack"
+        text="Switch between 6 colour themes including light mode."
+        mobileText="Tap Settings to switch between 6 colour themes including light mode."
+        kbd={["Ctrl", "⇧", "Y"]}
+      />
       <ViewSwitcher
         source={<StackSource />}
         preview={<StackPage />}
